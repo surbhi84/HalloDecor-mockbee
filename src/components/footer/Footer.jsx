@@ -1,16 +1,31 @@
 import foot from "./footer.module.css";
 
+const footerLink = [
+  { name: "Faq's", link: "" },
+  { name: "T&C", link: "" },
+  { name: "Terms of use", link: "" },
+  { name: "Order tracking", link: "" },
+  { name: "Shipping", link: "" },
+  { name: "Returns", link: "" },
+  { name: "Cancellation", link: "" },
+  { name: "Feedback", link: "" },
+];
+// the empty strings are there till the time links are created
+
+const footerIcon = [
+  {
+    iconClass: "fab fa-linkedin-in",
+    link: "https://www.linkedin.com/in/surbhi-kukreti-a91b0b163",
+  },
+  { iconClass: "fab fa-github", link: "https://github.com/surbhi84" },
+  {
+    iconClass: "fab fa-twitter",
+    link: "https://twitter.com/Surbhikukreti89",
+  },
+  { iconClass: "fab fa-medium-m", link: "https://medium.com/@surbhikukreti" },
+];
+
 export const Footer = () => {
-  const footerLink = [
-    { name: "Faq's", link: "" },
-    { name: "T&C", link: "" },
-    { name: "Terms of use", link: "" },
-    { name: "Order tracking", link: "" },
-    { name: "Shipping", link: "" },
-    { name: "Returns", link: "" },
-    { name: "Cancellation", link: "" },
-    { name: "Feedback", link: "" },
-  ];
   function FooterLinks() {
     return (
       <>
@@ -26,19 +41,6 @@ export const Footer = () => {
       </>
     );
   }
-
-  const footerIcon = [
-    {
-      iconClass: "fab fa-linkedin-in",
-      link: "https://www.linkedin.com/in/surbhi-kukreti-a91b0b163",
-    },
-    { iconClass: "fab fa-github", link: "https://github.com/surbhi84" },
-    {
-      iconClass: "fab fa-twitter",
-      link: "https://twitter.com/Surbhikukreti89",
-    },
-    { iconClass: "fab fa-medium-m", link: "https://medium.com/@surbhikukreti" },
-  ];
 
   function FooterIcons() {
     return (

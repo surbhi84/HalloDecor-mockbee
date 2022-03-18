@@ -8,15 +8,16 @@ export const Navbar = () => {
       <Routes>
         <Route path="/" element={<Carousel />} />
       </Routes>
-      {/* <!-- start of nav-head --> */}
+
       <nav className={`nav-head ${navbar["nav-head"]}`}>
         <Link className={navbar["logo"]} to="/">
           <h2 className="mg-xs">Hallo!Decor</h2>
         </Link>
+
         <div className="menu-btn mg-xs hamburger-icon mg-left-auto">
           <i className="fas fa-bars"></i>
         </div>
-        {/* <!-- start of nav-links --> */}
+
         <ul className="nav-links">
           <li className="search search-box">
             <input type="search" placeholder="Search" className="search-bar" />
@@ -39,6 +40,7 @@ export const Navbar = () => {
               Profile
             </Link>
           </li>
+
           <li>
             <Link className={`nav-link ${navbar["nav-link"]}`} to="/wishlist">
               <img
@@ -49,6 +51,7 @@ export const Navbar = () => {
               Wishlist
             </Link>
           </li>
+
           <li>
             <Link className={`nav-link ${navbar["nav-link"]}`} to="/cart">
               <img
@@ -59,6 +62,7 @@ export const Navbar = () => {
               Cart
             </Link>
           </li>
+
           <li>
             <Link
               to="/pages/login/"
@@ -68,9 +72,7 @@ export const Navbar = () => {
             </Link>
           </li>
         </ul>
-        {/* <!-- end of nav-links --> */}
       </nav>
-      {/* <!-- end of nav-head --> */}
     </header>
   );
 };
