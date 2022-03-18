@@ -5,6 +5,20 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export function ProductList() {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    (async function () {
+      try {
+        let products = await axios.get("/api/products");
+        console.log(products);
+        setProductList(products.data.products);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, []);
+
   return (
     <>
       <div className="parting flex-row">
