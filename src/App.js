@@ -1,7 +1,8 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import { Home, Cart, Profile, Wishlist } from "./pages";
+import { Home } from "./pages";
 import { Navbar, Footer } from "./components";
+import Mockman from "mockman-js";
+import "./css/common.css";
 
 function App() {
   return (
@@ -9,9 +10,15 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/ts"
+          element={
+            <div style={{ margin: "100px" }}>
+              <Mockman />
+            </div>
+          }
+        />
+        {/*the above route is for testing purposes */}
       </Routes>
       <Footer />
     </div>

@@ -1,0 +1,48 @@
+* {
+  box-sizing: border-box;
+}
+
+.logo {
+  text-decoration: none;
+  color: var(--color-blk);
+  font-size: var(--fs-m);
+  font-family: "Dancing Script", cursive;
+  /* border: 4px double var(--primary-color); */
+  background-color: var(--primary-color-bg);
+}
+
+.nav-head {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  background-color: var(--primary-color-bg);
+  scrollbar-width: none;
+}
+
+.nav-head::-webkit-scrollbar {
+  display: none;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gideon+Roman&family=Nunito:wght@200&display=swap");
+
+.nav-link {
+  padding-right: 0.2rem;
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+}
+
+.nav-link:hover,
+.logout-btn:hover {
+  transform: scale(1.05);
+  border-radius: 0.3rem;
+  border-bottom: 2px solid var(--primary-color);
+  border-right: 2px solid;
+}
+
+.logout-btn {
+  background-color: var(--primary-color-bg);
+  color: var(--color-blk);
+  border-radius: 0.2rem;
+  border: 2px solid transparent;
+  padding: var(--spacing-2xs);
+}
