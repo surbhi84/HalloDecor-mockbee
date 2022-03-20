@@ -7,7 +7,6 @@
   color: var(--color-blk);
   font-size: var(--fs-m);
   font-family: "Dancing Script", cursive;
-  /* border: 4px double var(--primary-color); */
   background-color: var(--primary-color-bg);
 }
 

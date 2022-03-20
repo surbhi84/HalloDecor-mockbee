@@ -65,23 +65,19 @@ export const Footer = () => {
   return (
     <footer>
       <div className={foot["footer-grid"]}>
-        {/* <!-- icon-links --> */}
         <div className="display-block">
           Keep in touch
           <ul className={foot["footer-list"]}>
             <FooterIcons />
           </ul>
         </div>
-        {/* end of icon-links  */}
 
-        {/* <!-- useful links --> */}
         <div className="display-block">
           Useful Links
           <ul className={foot["footer-list"]}>
             <FooterLinks />
           </ul>
         </div>
-        {/* <!-- end of useful links  --> */}
       </div>
 
       <div className={`${foot["copyright-text"]} flex-row`}>
