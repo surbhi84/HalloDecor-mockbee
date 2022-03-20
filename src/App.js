@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./pages";
+import { Home, ProductList } from "./pages";
 import { Navbar, Footer } from "./components";
 import Mockman from "mockman-js";
 import "./css/common.css";
@@ -10,6 +10,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/products" element={<ProductList />} />
+
         <Route
           path="/ts"
           element={

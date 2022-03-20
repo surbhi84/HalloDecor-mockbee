@@ -6,6 +6,7 @@
   justify-content: space-evenly;
   padding: var(--spacing-l);
   background-color: var(--primary-color-bg);
+  margin-top: 5.7rem;
 }
 
 .text-link {
@@ -59,7 +60,7 @@
   border: 4px double var(--primary-color);
 }
 
-.card-badge {
+.card-ecom .card-badg {
   left: 5%;
   background-color: var(--primary-color);
 }
