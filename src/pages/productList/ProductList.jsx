@@ -1,5 +1,6 @@
 import prodList from "./productList.module.css";
 import filter from "./filter.module.css";
+import foot from "../../components/footer/footer.module.css";
 import { categories } from "../home/Home";
 import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
@@ -137,6 +138,15 @@ export function ProductList() {
           })}
         </div>
       </main>
+      <div class="pagination flex-center pd-m">
+        {["<", 1, 2, 3, 4, ">"].map((item) => {
+          return (
+            <a href="#" class={`${foot["footer-link"]} pd-xs`}>
+              {item}
+            </a>
+          );
+        })}
+      </div>
     </>
   );
 }
