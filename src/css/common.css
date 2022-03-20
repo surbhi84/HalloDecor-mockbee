@@ -1,0 +1,118 @@
+@import url(https://halloui.netlify.app/halloUi-share.css);
+/* @import url(/css/homepage.css);
+@import url(/css/header.css);
+@import url(/css/footer.css);
+@import url(/css/variable.css);
+@import url(/css/util.css);
+@import url(/pages/productList/productList.css);
+@import url(/pages/wishlist/wishlist.css); */
+@import url(variable.css);
+
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gideon+Roman&family=Nunito:wght@200&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+  margin: unset;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  margin-bottom: auto;
+}
+
+.mg-btm {
+  margin-bottom: auto;
+}
+
+.top-fit {
+  object-position: top;
+}
+
+.center-fit {
+  object-position: center;
+}
+
+.bottom-fit {
+  object-position: bottom;
+}
+
+/* card class to implement the hover functionality */
+.card-scale:hover {
+  transform: scale(1.05);
+  transition: transform 0.5s ease-in-out;
+}
+
+.menu-btn {
+  display: none;
+}
+
+/* media queries for header and home page */
+@media screen and (max-width: 480px) {
+  body {
+    font-size: small;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .logo {
+    font-size: var(--fs-sm);
+  }
+
+  .carousel {
+    height: 40vh;
+    width: 100%;
+  }
+
+  .slides {
+    height: 40vh;
+  }
+
+  .landscape-overcard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    width: 100%;
+    margin-left: unset;
+  }
+  .overlay-solid-card {
+    font-size: var(--fs-sm);
+    height: 15%;
+    width: 50%;
+    padding: var(--spacing-sm);
+    justify-self: center;
+    position: unset;
+    align-self: center;
+  }
+
+  .menu-btn {
+    display: inline;
+  }
+  .nav-head {
+    overflow: visible;
+  }
+
+  .nav-links {
+    position: absolute;
+    z-index: 1;
+    top: 0%;
+    left: 0%;
+    flex-direction: column;
+    border-radius: 0.2rem;
+    background-color: var(--primary-color);
+    padding: var(--spacing-sm);
+  }
+
+  main {
+    margin-bottom: auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .overlay-solid-card {
+    height: 20%;
+    width: 40%;
+  }
+}

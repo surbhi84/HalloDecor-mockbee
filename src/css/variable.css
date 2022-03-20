@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gideon+Roman&family=Nunito:wght@200&display=swap");
+
+:root {
+  /* colors */
+  --primary-color: #cfaa89;
+  --primary-color-bg: #dbc1aa52;
+
+  --color-blk: #000000;
+
+  --prim-ff: "Nunito", sans-serif;
+}
