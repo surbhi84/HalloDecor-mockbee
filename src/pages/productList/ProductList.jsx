@@ -8,15 +8,17 @@ import axios from "axios";
 
 export function ProductList() {
   const [productList, setProductList] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     (async function () {
       try {
-        let products = await axios.get("/api/products");
-        console.log(products);
+        let products = await axios.get("/api/productss");
+        console.log(products, "prodddoss");
         setProductList(products.data.products);
       } catch (err) {
-        console.log(err);
+        console.log(err, "oops");
+        setError(true);
       }
     })();
   }, []);
@@ -36,7 +38,6 @@ export function ProductList() {
           );
         })}
       </div>
-
       <main className={prodList["main-content"]}>
         <div className={filter.filter}>
           <div className={`flex-row ${filter["filter-head"]}`}>
@@ -107,6 +108,16 @@ export function ProductList() {
             )}
           </div>
         </div>
+
+        {error && (
+          <div
+            className="alert color-rp 
+          snackbar-center"
+          >
+            <img src="./iconSvg/errorFilled.svg" alt="error icon" />
+            Ooops! your product can't be added to cart.
+          </div>
+        )}
 
         <div className="flex-row-wrap pd-m gap-xl flex-center product-display">
           {productList.map((prod) => {

@@ -1,65 +1,5 @@
 import "./home.css";
 
-const broadCategories = [
-  {
-    category: "Bestsellers",
-    imgSrc: "/assets/images/whitemirror1.webp",
-    imgAlt: "mirror on a wall and cuishons",
-    link: "/productList",
-  },
-  {
-    category: "Handcrafted",
-    imgSrc: "/assets/images/basket1.webp",
-    imgAlt: "basket image",
-    link: "/productList",
-  },
-  {
-    category: "Trendsetters",
-    imgSrc: "/assets/images/chairtable1.webp",
-    imgAlt: "chair and table decor",
-    link: "/productList",
-  },
-];
-
-export const categories = [
-  {
-    category: "Art & Decor",
-    imgSrc: "/assets/images/artanddecor.webp",
-    imgAlt: "vase and portraits",
-    link: "/productList",
-  },
-  {
-    category: "Lamps & lighting",
-    imgSrc: "/assets/images/lampbed.webp",
-    imgAlt: "bedside lamp",
-    link: "/productList",
-  },
-  {
-    category: "Kitchen & Dining",
-    imgSrc: "/assets/images/plates.webp",
-    imgAlt: "kitchenware, plates",
-    link: "/productList",
-  },
-  {
-    category: "Bath",
-    imgSrc: "/assets/images/stackedSoap.webp",
-    imgAlt: "handmade soaps",
-    link: "/productList",
-  },
-  {
-    category: "Bed Linen",
-    imgSrc: "/assets/images/bed1.webp",
-    imgAlt: "bedroom decor",
-    link: "/productList",
-  },
-  {
-    category: "Furnishings",
-    imgSrc: "/assets/images/decor.webp",
-    imgAlt: "hanging light and chair",
-    link: "/productList",
-  },
-];
-
 export const Home = () => (
   <>
     <main className="flex-col">
@@ -123,3 +63,63 @@ export const Home = () => (
     </main>
   </>
 );
+
+const broadCategories = [
+  {
+    category: "Bestsellers",
+    imgSrc: "/assets/images/whitemirror1.webp",
+    imgAlt: "mirror on a wall and cuishons",
+    link: "/productList",
+  },
+  {
+    category: "Handcrafted",
+    imgSrc: "/assets/images/basket1.webp",
+    imgAlt: "basket image",
+    link: "/productList",
+  },
+  {
+    category: "Trendsetters",
+    imgSrc: "/assets/images/chairtable1.webp",
+    imgAlt: "chair and table decor",
+    link: "/productList",
+  },
+];
+
+export const categories = [
+  {
+    category: "Art & Decor",
+    imgSrc: "/assets/images/artanddecor.webp",
+    imgAlt: "vase and portraits",
+    link: "/productList",
+  },
+  {
+    category: "Lamps & lighting",
+    imgSrc: "/assets/images/lampbed.webp",
+    imgAlt: "bedside lamp",
+    link: "/productList",
+  },
+  {
+    category: "Kitchen & Dining",
+    imgSrc: "/assets/images/plates.webp",
+    imgAlt: "kitchenware, plates",
+    link: "/productList",
+  },
+  {
+    category: "Bath",
+    imgSrc: "/assets/images/stackedSoap.webp",
+    imgAlt: "handmade soaps",
+    link: "/productList",
+  },
+  {
+    category: "Bed Linen",
+    imgSrc: "/assets/images/bed1.webp",
+    imgAlt: "bedroom decor",
+    link: "/productList",
+  },
+  {
+    category: "Furnishings",
+    imgSrc: "/assets/images/decor.webp",
+    imgAlt: "hanging light and chair",
+    link: "/productList",
+  },
+];

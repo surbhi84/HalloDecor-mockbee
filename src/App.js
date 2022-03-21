@@ -11,16 +11,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
-
-        <Route
-          path="/ts"
-          element={
-            <div style={{ margin: "100px" }}>
-              <Mockman />
-            </div>
-          }
-        />
-        {/*the above route is for testing purposes */}
+        {/*the below route is for testing purposes */}
+        <Route path="/ts" element={<Mockman />} />
       </Routes>
       <Footer />
     </div>
