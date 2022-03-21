@@ -9,8 +9,6 @@ export const Navbar = ({ isHome }) => {
     setIsHamburgerView(true);
   }, []);
 
-  const useOnResize = (onResizefunc) => {};
-  const [winSize, setWinSize] = useState();
   const [isHamburgerView, setIsHamburgerView] = useState(true);
   return (
     <header className="home-head">
