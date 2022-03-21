@@ -10,10 +10,15 @@
   background-color: var(--primary-color-bg);
 }
 
-.nav-head {
+.nav-head-home {
   position: absolute;
   width: 100%;
   top: 0;
+  background-color: var(--primary-color-bg);
+  scrollbar-width: none;
+}
+.nav-head {
+  width: 100%;
   background-color: var(--primary-color-bg);
   scrollbar-width: none;
 }

@@ -38,6 +38,10 @@ main {
   object-position: bottom;
 }
 
+.spc-btwn {
+  justify-content: space-between;
+}
+
 /* card class to implement the hover functionality */
 .card-scale:hover {
   transform: scale(1.05);
@@ -46,6 +50,35 @@ main {
 
 .menu-btn {
   display: none;
+}
+
+/* Button design which have been used througout the application */
+.cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 90%;
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-3xs);
+  border: 4px double transparent;
+  background-color: var(--primary-color-bg);
+  border-radius: 0.1rem;
+}
+
+.cart-btn:hover {
+  border: 4px double var(--primary-color);
+}
+
+.text-link {
+  color: var(--primary-color);
+  border-bottom: 2px solid transparent;
+}
+
+.text-link:hover {
+  transform: scale(1.1);
+  border-bottom: 2px solid var(--primary-color);
+  transition: transform 0.1s ease;
 }
 
 /* media queries for header and home page */

@@ -2,14 +2,18 @@ import navbar from "./navbar.module.css";
 import { Carousel } from "../carousel/Carousel";
 import { Routes, Route, Link } from "react-router-dom";
 
-export const Navbar = () => {
+export const Navbar = ({ isHome }) => {
   return (
     <header className="home-head">
       <Routes>
         <Route path="/" element={<Carousel />} />
       </Routes>
 
-      <nav className={`nav-head ${navbar["nav-head"]}`}>
+      <nav
+        className={`nav-head ${
+          isHome ? navbar["nav-head-home"] : navbar["nav-head"]
+        }`}
+      >
         <Link className={navbar["logo"]} to="/">
           <h2 className="mg-xs">Hallo!Decor</h2>
         </Link>

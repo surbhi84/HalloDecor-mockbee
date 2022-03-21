@@ -1,0 +1,45 @@
+.auth-card {
+  width: 25rem;
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-blended-light);
+  margin: var(--spacing-2xl);
+  accent-color: var(--primary-color);
+}
+
+.auth-heading {
+  color: var(--primary-color);
+}
+
+.auth-card .input-line:focus {
+  border-color: var(--primary-color);
+}
+
+.pwd-eye {
+  /* align-self: flex-end; */
+  padding: var(--spacing-3xs);
+}
+
+.pwd-eye:hover {
+  color: var(--primary-color);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 90%;
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-3xs);
+  border: 4px double transparent;
+  background-color: var(--primary-color-bg);
+  border-radius: 0.1rem;
+}
+
+.cart-btn:hover {
+  border: 4px double var(--primary-color);
+}
