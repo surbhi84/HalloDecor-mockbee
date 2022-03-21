@@ -125,17 +125,41 @@ main {
   }
   .nav-head {
     overflow: visible;
+    flex-direction: column;
   }
 
   .nav-links {
-    position: absolute;
+    /* position: absolute; */
     z-index: 1;
-    top: 0%;
-    left: 0%;
-    flex-direction: column;
+    /* top: 0%;
+    left: 0%; */
+    width: 100vw;
+    display: block;
     border-radius: 0.2rem;
     background-color: var(--primary-color);
     padding: var(--spacing-sm);
+  }
+
+  .nav-links-hidden {
+    display: none;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .navBlock {
+    display: block;
+  }
+
+  .search {
+    justify-content: space-between;
+    margin-inline: 1rem;
+  }
+
+  .search-bar {
+    width: 100%;
   }
 
   main {
