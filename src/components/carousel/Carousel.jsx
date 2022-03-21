@@ -14,7 +14,7 @@ function SliderLabels({ activeSlide, setActiveSlide, inputNum }) {
               setActiveSlide(item);
             }}
             className={`${carousel["manual-btn"]}  
-              ${item === activeSlide ? carousel["active"] : "abcd"}`}
+              ${item === activeSlide ? carousel["active"] : ""}`}
           ></label>
         );
       })}
