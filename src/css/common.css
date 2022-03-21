@@ -48,6 +48,9 @@ main {
   display: none;
 }
 
+.alert {
+}
+
 /* media queries for header and home page */
 @media screen and (max-width: 480px) {
   body {

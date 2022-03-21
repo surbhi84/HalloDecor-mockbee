@@ -1,0 +1,122 @@
+.pos-rel {
+  position: relative;
+}
+
+.parting {
+  justify-content: space-evenly;
+  padding: var(--spacing-l);
+  background-color: var(--primary-color-bg);
+  margin-top: 5.7rem;
+}
+
+.text-link {
+  color: var(--primary-color);
+  border-bottom: 2px solid transparent;
+}
+
+.text-link:hover {
+  transform: scale(1.1);
+  border-bottom: 2px solid var(--primary-color);
+  transition: transform 0.1s ease;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.card-ecom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 25rem;
+  min-height: 7rem;
+  width: 18rem;
+  min-width: 10rem;
+  box-shadow: var(--shadow-subtle);
+  position: relative;
+}
+
+.card-ecom > img {
+  margin-top: var(--spacing-2xs);
+  width: 94%;
+  height: 16.5rem;
+}
+
+.cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 90%;
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-3xs);
+  border: 4px double transparent;
+  background-color: var(--primary-color-bg);
+  border-radius: 0.1rem;
+}
+
+.cart-btn:hover {
+  border: 4px double var(--primary-color);
+}
+
+.card-ecom .card-badg {
+  left: 5%;
+  background-color: var(--primary-color);
+}
+
+.like-btn {
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 58%;
+  right: 5%;
+}
+
+.like-btn:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.product-details {
+  width: 100%;
+  padding: var(--spacing-2xs) var(--spacing-xs) 0;
+}
+
+@media screen and (max-width: 480px) {
+  .cart-btn {
+    padding: 0.1rem;
+  }
+  .card-ecom {
+    height: 15rem;
+    width: 8rem;
+    gap: var(--spacing-4xs);
+  }
+  .card-ecom > img {
+    height: 8rem;
+  }
+
+  .like-btn {
+    top: 44%;
+    right: 5%;
+  }
+  .product-details {
+    padding: var(--spacing-4xs) var(--spacing-2xs) 0;
+  }
+  .product-display {
+    display: flex;
+    flex-direction: row;
+    padding: unset;
+  }
+  .main-content {
+    display: block;
+  }
+  .parting {
+    padding: var(--spacing-xs);
+    margin-bottom: var(--spacing-l);
+  }
+  .parting > .text-link {
+    text-align: center;
+    padding: var(--spacing-xs);
+  }
+}

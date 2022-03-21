@@ -1,0 +1,23 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: var(--primary-color-bg);
+  accent-color: var(--primary-color);
+}
+
+.filter-head {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.display-wrap {
+  width: 12rem;
+}
+
+@media screen and (max-width: 480px) {
+  .filter {
+    display: none;
+  }
+}
