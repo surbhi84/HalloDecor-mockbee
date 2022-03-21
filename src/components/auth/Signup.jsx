@@ -5,7 +5,6 @@ export function Signup() {
   return (
     <>
       <main className="flex-center">
-        {/* <!-- sign up card --> */}
         <div
           className={`${auth["signup-card"]} ${auth["auth-card"]} flex-col flex-center gap-md`}
         >
@@ -75,7 +74,6 @@ export function Signup() {
             Already have an account
           </Link>
         </div>
-        {/* <!-- end of sign up card --> */}
       </main>
     </>
   );
