@@ -2,7 +2,7 @@ import prodList from "./productList.module.css";
 import filter from "./filter.module.css";
 import foot from "../../components/footer/footer.module.css";
 import { categories } from "../home/Home";
-import { v4 as uuid } from "uuid";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -13,11 +13,9 @@ export function ProductList() {
   useEffect(() => {
     (async function () {
       try {
-        let products = await axios.get("/api/productss");
-        console.log(products, "prodddoss");
+        let products = await axios.get("/api/products");
         setProductList(products.data.products);
       } catch (err) {
-        console.log(err, "oops");
         setError(true);
       }
     })();
@@ -25,6 +23,16 @@ export function ProductList() {
 
   return (
     <>
+      {error && (
+        <div
+          className="alert color-rp 
+          snackbar-center"
+        >
+          <img src="./iconSvg/errorFilled.svg" alt="error icon" />
+          Ooops! your product can't be added to cart.
+        </div>
+      )}
+
       <div className={`${prodList["parting"]} flex-row`}>
         {categories.map(({ category, link }) => {
           return (
@@ -109,16 +117,6 @@ export function ProductList() {
           </div>
         </div>
 
-        {error && (
-          <div
-            className="alert color-rp 
-          snackbar-center"
-          >
-            <img src="./iconSvg/errorFilled.svg" alt="error icon" />
-            Ooops! your product can't be added to cart.
-          </div>
-        )}
-
         <div className="flex-row-wrap pd-m gap-xl flex-center product-display">
           {productList.map((prod) => {
             return (
@@ -140,7 +138,7 @@ export function ProductList() {
                   <strong> ₹{prod.discPrice} </strong> <s>{prod.price}</s>
                   <span className="mg-xs">{prod.discount}% OFF</span>
                 </div>
-                <button className={`${prodList["cart-btn"]} gap-sm`}>
+                <button className="cart-btn gap-sm">
                   Add to cart
                   <img src="/assets/icons/bluecart.svg" alt="cart icon" />
                 </button>

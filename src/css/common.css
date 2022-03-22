@@ -1,11 +1,5 @@
 @import url(https://halloui.netlify.app/halloUi-share.css);
-/* @import url(/css/homepage.css);
-@import url(/css/header.css);
-@import url(/css/footer.css);
-@import url(/css/variable.css);
-@import url(/css/util.css);
-@import url(/pages/productList/productList.css);
-@import url(/pages/wishlist/wishlist.css); */
+
 @import url(variable.css);
 
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gideon+Roman&family=Nunito:wght@200&display=swap");
@@ -38,6 +32,10 @@ main {
   object-position: bottom;
 }
 
+.spc-btwn {
+  justify-content: space-between;
+}
+
 /* card class to implement the hover functionality */
 .card-scale:hover {
   transform: scale(1.05);
@@ -48,7 +46,33 @@ main {
   display: none;
 }
 
-.alert {
+/* Button design which have been used througout the application */
+.cart-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 90%;
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-3xs);
+  border: 4px double transparent;
+  background-color: var(--primary-color-bg);
+  border-radius: 0.1rem;
+}
+
+.cart-btn:hover {
+  border: 4px double var(--primary-color);
+}
+
+.text-link {
+  color: var(--primary-color);
+  border-bottom: 2px solid transparent;
+}
+
+.text-link:hover {
+  transform: scale(1.1);
+  border-bottom: 2px solid var(--primary-color);
+  transition: transform 0.1s ease;
 }
 
 /* media queries for header and home page */
@@ -95,21 +119,46 @@ main {
   }
   .nav-head {
     overflow: visible;
+    flex-direction: column;
   }
 
   .nav-links {
-    position: absolute;
     z-index: 1;
-    top: 0%;
-    left: 0%;
-    flex-direction: column;
+    width: 100vw;
+    display: block;
     border-radius: 0.2rem;
     background-color: var(--primary-color);
     padding: var(--spacing-sm);
   }
 
+  .nav-links-hidden {
+    display: none;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .navBlock {
+    display: block;
+  }
+
+  .search {
+    justify-content: space-between;
+    margin-inline: 1rem;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
   main {
     margin-bottom: auto;
+  }
+
+  .cart-btn {
+    margin-top: var(--spacing-3xs);
   }
 }
 

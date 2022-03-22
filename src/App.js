@@ -1,16 +1,27 @@
+import React from "react";
+import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, ProductList } from "./pages";
-import { Navbar, Footer } from "./components";
+import { Home, Profile, ProductList } from "./pages";
+import { Navbar, Footer, Login, Signup } from "./components";
 import Mockman from "mockman-js";
-import "./css/common.css";
 
 function App() {
+  const [isHome, setIsHome] = useState(true);
+
   return (
     <div className="App">
-      <Navbar />
+      <Routes>
+        <Route path="/" element={<Navbar isHome={true} />} />
+        <Route path="*" element={<Navbar isHome={false} />} />
+      </Routes>
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductList />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
         {/*the below route is for testing purposes */}
         <Route path="/ts" element={<Mockman />} />
       </Routes>

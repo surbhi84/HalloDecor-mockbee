@@ -10,10 +10,15 @@
   background-color: var(--primary-color-bg);
 }
 
-.nav-head {
+.nav-head-home {
   position: absolute;
   width: 100%;
   top: 0;
+  background-color: var(--primary-color-bg);
+  scrollbar-width: none;
+}
+.nav-head {
+  width: 100%;
   background-color: var(--primary-color-bg);
   scrollbar-width: none;
 }
@@ -25,9 +30,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gideon+Roman&family=Nunito:wght@200&display=swap");
 
 .nav-link {
+  text-align: center;
   padding-right: 0.2rem;
   border-radius: 0.5rem;
   border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--black);
+  width: max-content;
+  margin: auto;
 }
 
 .nav-link:hover,
@@ -44,4 +56,10 @@
   border-radius: 0.2rem;
   border: 2px solid transparent;
   padding: var(--spacing-2xs);
+}
+
+.nav-logo-div {
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
