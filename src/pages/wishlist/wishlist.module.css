@@ -1,0 +1,23 @@
+.like-btn {
+  top: 5%;
+}
+.wishlist-card {
+  height: 26.2rem;
+}
+
+.wish-price {
+  margin-top: var(--spacing-2xs);
+}
+
+.wishlist-card > img {
+  height: 15rem;
+}
+
+@media screen and (max-width: 480px) {
+  .wishlist-card {
+    height: 22em;
+  }
+  .wishlist-card > img {
+    height: 8rem;
+  }
+}

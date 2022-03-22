@@ -8,20 +8,44 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
-    description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+    category: "Art & Decor",
+    imgSrc: "/assets/images/artanddecor.webp",
+    imgAlt: "vase and portraits",
+    link: "/productList",
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
-    description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+    category: "Lamps & lighting",
+    imgSrc: "/assets/images/lampbed.webp",
+    imgAlt: "bedside lamp",
+    link: "/productList",
   },
   {
     _id: uuid(),
-    categoryName: "horror",
-    description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+    category: "Kitchen & Dining",
+    imgSrc: "/assets/images/plates.webp",
+    imgAlt: "kitchenware, plates",
+    link: "/productList",
+  },
+  {
+    _id: uuid(),
+    category: "Bath",
+    imgSrc: "/assets/images/stackedSoap.webp",
+    imgAlt: "handmade soaps",
+    link: "/productList",
+  },
+  {
+    _id: uuid(),
+    category: "Bed Linen",
+    imgSrc: "/assets/images/bed1.webp",
+    imgAlt: "bedroom decor",
+    link: "/productList",
+  },
+  {
+    _id: uuid(),
+    category: "Furnishings",
+    imgSrc: "/assets/images/decor.webp",
+    imgAlt: "hanging light and chair",
+    link: "/productList",
   },
 ];
