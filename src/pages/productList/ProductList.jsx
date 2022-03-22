@@ -1,13 +1,13 @@
 import prodList from "./productList.module.css";
 import filter from "./filter.module.css";
 import foot from "../../components/footer/footer.module.css";
-import { Error } from "../../components";
+import { Categories, Error } from "../../components";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 export function ProductList() {
   const [productList, setProductList] = useState([]);
-  const [categories, setCategories] = useState([]);
+
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -15,8 +15,6 @@ export function ProductList() {
       try {
         let products = await axios.get("/api/products");
         setProductList(products.data.products);
-        let categories = await axios.get("/api/categories");
-        setCategories(categories.data.categories);
       } catch (err) {
         setError(true);
       }
@@ -28,18 +26,9 @@ export function ProductList() {
       {error && <Error err={"Products can't be loaded"} />}
 
       <div className={`${prodList["parting"]} flex-row`}>
-        {categories.map(({ category, link }) => {
-          return (
-            <a
-              key={category}
-              href={link}
-              className={`${prodList["text-link"]} text-dec-none `}
-            >
-              {category}
-            </a>
-          );
-        })}
+        <Categories />
       </div>
+
       <main className={prodList["main-content"]}>
         <div className={filter.filter}>
           <div className={`flex-row ${filter["filter-head"]}`}>

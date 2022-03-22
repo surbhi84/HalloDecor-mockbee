@@ -22,10 +22,6 @@
   color: var(--primary-color);
 }
 
-.full-width {
-  width: 100%;
-}
-
 .cart-btn {
   display: flex;
   align-items: center;
