@@ -1,13 +1,15 @@
 import prodList from "./productList.module.css";
 import filter from "./filter.module.css";
 import foot from "../../components/footer/footer.module.css";
-import { categories } from "../home/Home";
+// import { categories } from "../home/Home";
 import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 export function ProductList() {
   const [productList, setProductList] = useState([]);
+  const [categories, setCategories] = useState([]);
+
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -15,6 +17,8 @@ export function ProductList() {
       try {
         let products = await axios.get("/api/products");
         setProductList(products.data.products);
+        let categories = await axios.get("/api/categories");
+        setCategories(categories.data.categories);
       } catch (err) {
         setError(true);
       }
