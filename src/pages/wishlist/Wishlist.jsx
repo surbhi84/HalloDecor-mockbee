@@ -1,4 +1,3 @@
-// import { ProductList } from "../productList/ProductList";
 import product from "../productList/productList.module.css";
 import wish from "./wishlist.module.css";
 export function Wishlist() {

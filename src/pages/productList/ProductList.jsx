@@ -1,7 +1,7 @@
 import prodList from "./productList.module.css";
 import filter from "./filter.module.css";
 import foot from "../../components/footer/footer.module.css";
-// import { categories } from "../home/Home";
+import { Error } from "../../components";
 import { v4 as uuid } from "uuid";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -9,7 +9,6 @@ import axios from "axios";
 export function ProductList() {
   const [productList, setProductList] = useState([]);
   const [categories, setCategories] = useState([]);
-
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -27,15 +26,7 @@ export function ProductList() {
 
   return (
     <>
-      {error && (
-        <div
-          className="alert color-rp 
-          snackbar-center"
-        >
-          <img src="./iconSvg/errorFilled.svg" alt="error icon" />
-          Ooops! your product can't be added to cart.
-        </div>
-      )}
+      {error && <Error err={"Products can't be loaded"} />}
 
       <div className={`${prodList["parting"]} flex-row`}>
         {categories.map(({ category, link }) => {
