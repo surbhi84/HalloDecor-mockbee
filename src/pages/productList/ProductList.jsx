@@ -2,7 +2,7 @@ import prodList from "./productList.module.css";
 import filter from "./filter.module.css";
 import foot from "../../components/footer/footer.module.css";
 import { categories } from "../home/Home";
-import { v4 as uuid } from "uuid";
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -138,7 +138,7 @@ export function ProductList() {
                   <strong> ₹{prod.discPrice} </strong> <s>{prod.price}</s>
                   <span className="mg-xs">{prod.discount}% OFF</span>
                 </div>
-                <button className={`${prodList["cart-btn"]} gap-sm`}>
+                <button className="cart-btn gap-sm">
                   Add to cart
                   <img src="/assets/icons/bluecart.svg" alt="cart icon" />
                 </button>

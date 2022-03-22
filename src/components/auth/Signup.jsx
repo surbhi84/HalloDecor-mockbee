@@ -10,55 +10,30 @@ export function Signup() {
         >
           <h3 className={auth["auth-heading"]}>Sign up</h3>
 
-          <label className={`flex-col gap-sm ${auth["full-width"]}`}>
-            First Name
-            <input
-              type="text"
-              className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
-            />
-          </label>
-
-          <label className={`flex-col gap-sm ${auth["full-width"]}`}>
-            Last Name
-            <input
-              type="text"
-              className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
-            />
-          </label>
-
-          <label className={`flex-col gap-sm ${auth["full-width"]}`}>
-            Email id
-            <input
-              type="text"
-              className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
-            />
-          </label>
-
-          <label className={`flex-col gap-sm ${auth["full-width"]}`}>
-            Choose a password
-            <div className="flex-row">
+          {["First Name", "Last Name", "Email id"].map((label) => (
+            <label className={`flex-col gap-sm ${auth["full-width"]}`}>
+              {label}
               <input
-                type="password"
+                type="text"
                 className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
               />
-              <span className="pwd-eye">
-                <i className="fas fa-eye-slash"></i>
-              </span>
-            </div>
-          </label>
+            </label>
+          ))}
 
-          <label className={`flex-col gap-sm ${auth["full-width"]}`}>
-            Confirm password
-            <div className="flex-row">
-              <input
-                type="password"
-                className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
-              />
-              <span className="pwd-eye">
-                <i className="fas fa-eye-slash"></i>
-              </span>
-            </div>
-          </label>
+          {["Choose a password", "Confirm password"].map((label) => (
+            <label className={`flex-col gap-sm ${auth["full-width"]}`}>
+              {label}
+              <div className="flex-row">
+                <input
+                  type="password"
+                  className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
+                />
+                <span className="pwd-eye">
+                  <i className="fas fa-eye-slash"></i>
+                </span>
+              </div>
+            </label>
+          ))}
 
           <div className="flex-row spc-btwn">
             <label>
