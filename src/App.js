@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Profile, ProductList } from "./pages";
+import { Home, Profile, ProductList, Wishlist } from "./pages";
 import { Navbar, Footer, Login, Signup } from "./components";
 import Mockman from "mockman-js";
 
@@ -21,7 +21,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
+        <Route path="/wishlist" element={<Wishlist />} />
         {/*the below route is for testing purposes */}
         <Route path="/ts" element={<Mockman />} />
       </Routes>
