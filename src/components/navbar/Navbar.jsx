@@ -1,8 +1,7 @@
 import navbar from "./navbar.module.css";
 import { Carousel } from "../carousel/Carousel";
 import { Routes, Route, Link } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export const Navbar = ({ isHome }) => {
   useEffect(() => {
