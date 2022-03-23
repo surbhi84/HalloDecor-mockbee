@@ -5,3 +5,4 @@ export { Login } from "./auth/Login";
 export { Signup } from "./auth/Signup";
 export { Error } from "./Error";
 export { Categories } from "./Categories";
+export { Filter } from "./productFilter/Filter";

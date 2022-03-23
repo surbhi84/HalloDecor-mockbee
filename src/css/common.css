@@ -84,7 +84,15 @@ main {
   padding: var(--spacing-l);
   background-color: var(--primary-color-bg);
 }
+.footer-link {
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
 
+.footer-link:hover {
+  border-bottom: 2px solid var(--primary-color);
+}
 /* media queries for header and home page */
 @media screen and (max-width: 480px) {
   body {

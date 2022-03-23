@@ -1,5 +1,5 @@
 import navbar from "./navbar.module.css";
-import { Carousel } from "../carousel/Carousel";
+import { Carousel } from "components";
 import { Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 
