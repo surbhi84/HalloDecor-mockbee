@@ -1,39 +1,91 @@
 import cart from "./cart.module.css";
 import prodList from "../productList/productList.module.css";
-import { Categories } from "../../components";
+import { v4 as uuid } from "uuid";
+
 export function Cart() {
+  // temporary setup will edit when working on features
+  const cartList = [
+    {
+      // 5
+      id: uuid(),
+      category: "",
+      brand: "Nature jewels",
+      product: "Wooden Handmade toy",
+      productImg: "/assets/images/toy.webp",
+      productAlt: "wooden toy",
+      discPrice: 895,
+      price: 1489,
+      discount: 40,
+      inStock: true,
+      rating: 4.5,
+      quantity: 0,
+    },
+    {
+      // 5
+      id: uuid(),
+      category: "",
+      brand: "Nature jewels",
+      product: "Wooden Handmade toy",
+      productImg: "/assets/images/toy.webp",
+      productAlt: "wooden toy",
+      discPrice: 895,
+      price: 1489,
+      discount: 40,
+      inStock: true,
+      rating: 4.5,
+      quantity: 0,
+    },
+  ];
   return (
     <>
       <div className={`${prodList["parting"]} flex-row`}>
-        <Categories />
+        <h2 className="text-link">My Cart</h2>
       </div>
-      <div className={`${cart["main-cart"]} flex-center`}>
+      <div className={`${cart["main-cart"]} `}>
         {/* hrz card for product display*/}
-        <div className={`${cart["card-ecom-hrz"]} flex-row`}>
-          <img
-            src="/media/images/toy.webp"
-            alt="wooden toy"
-            className="responsive-img"
-          />
-          {/* product details*/}
-          <div className={`${prodList["product-details"]} flex-col gap-sm`}>
-            <h4 className="marg-un">Nature jewels</h4>
-            <p className="marg-un">Wooden Handmade toy</p>
-            <strong> ₹ 895 </strong> <s>1489</s>
-            <div>40% OFF</div>
-            <div>
-              Quantity: <button className={cart["short-btn"]}>-</button>{" "}
-              <span>1</span>
-              <button className={cart["short-btn"]}>+</button>
-            </div>
-            <button className="cart-btn full-width">Remove from cart</button>
-            <button className="cart-btn full-width">Move to wishlist</button>
-          </div>
-          {/* end of product details*/}
+
+        <div className="flex-col">
+          {cartList.map((item) => {
+            return (
+              <div
+                className={`${cart["card-ecom-hrz"]} flex-row`}
+                key={item.id}
+              >
+                <img
+                  src={item.productImg}
+                  alt={item.productImg}
+                  className="responsive-img"
+                />
+                {/* product details*/}
+
+                <div
+                  className={`${prodList["product-details"]} flex-col gap-sm`}
+                >
+                  <h4 className="marg-un">{item.brand}</h4>
+                  <p className="marg-un">{item.product}</p>
+                  <strong> ₹{item.discPrice}</strong> <s>₹{item.price}</s>
+                  <div>{item.discount}% OFF</div>
+                  <div>
+                    Quantity:
+                    <button className={`${cart["short-btn"]} mg-xs`}>-</button>
+                    <span>{item.quantity}</span>
+                    <button className={`${cart["short-btn"]} mg-xs`}>+</button>
+                  </div>
+                  <button className="cart-btn full-width">
+                    Remove from cart
+                  </button>
+                  <button className="cart-btn full-width">
+                    Move to wishlist
+                  </button>
+                </div>
+                {/* end of product details*/}
+              </div>
+            );
+          })}
         </div>
-        {/* end of hrz card*/}
+
         {/* amount details div*/}
-        <div className="amt-detail pd-sm">
+        <div className={`${cart["amt-detail"]}`}>
           <h3>Amount Details</h3>
           <hr className="break" />
 

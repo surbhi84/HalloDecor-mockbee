@@ -26,7 +26,7 @@ export function ProductList() {
       {error && <Error err={"Products can't be loaded"} />}
 
       <div className={`${prodList["parting"]} flex-row`}>
-        <Categories />
+        <Categories nav={"nav"} />
       </div>
 
       <main className={prodList["main-content"]}>
@@ -101,33 +101,45 @@ export function ProductList() {
         </div>
 
         <div className="flex-row-wrap pd-m gap-xl flex-center product-display">
-          {productList.map((prod) => {
-            return (
-              <div className={prodList["card-ecom"]} key={prod.id}>
-                <span className={`card-badge ${prodList["card-badg"]}`}>
-                  {prod.category !== "" ? prod.category : ""}
-                </span>
-                <button className={prodList["like-btn"]}>
-                  <img src="/assets/icons/redHeart.svg" alt="heart icon" />
-                </button>
-                <img
-                  src={prod.productImg}
-                  alt={prod.productAlt}
-                  className="responsive-img"
-                />
-                <div className={prodList["product-details"]}>
-                  <h4 className="marg-un">{prod.brand}</h4>
-                  <p className="marg-un">{prod.product}</p>
-                  <strong> ₹{prod.discPrice} </strong> <s>{prod.price}</s>
-                  <span className="mg-xs">{prod.discount}% OFF</span>
+          {productList.map(
+            ({
+              id,
+              category,
+              productImg,
+              productAlt,
+              brand,
+              product,
+              discPrice,
+              price,
+              discount,
+            }) => {
+              return (
+                <div className={prodList["card-ecom"]} key={id}>
+                  <span className={`card-badge ${prodList["card-badg"]}`}>
+                    {category !== "" ? category : ""}
+                  </span>
+                  <button className={prodList["like-btn"]}>
+                    <img src="/assets/icons/redHeart.svg" alt="heart icon" />
+                  </button>
+                  <img
+                    src={productImg}
+                    alt={productAlt}
+                    className="responsive-img"
+                  />
+                  <div className={prodList["product-details"]}>
+                    <h4 className="marg-un">{brand}</h4>
+                    <p className="marg-un">{product}</p>
+                    <strong> ₹{discPrice} </strong> <s>{price}</s>
+                    <span className="mg-xs">{discount}% OFF</span>
+                  </div>
+                  <button className="cart-btn gap-sm">
+                    Add to cart
+                    <img src="/assets/icons/bluecart.svg" alt="cart icon" />
+                  </button>
                 </div>
-                <button className="cart-btn gap-sm">
-                  Add to cart
-                  <img src="/assets/icons/bluecart.svg" alt="cart icon" />
-                </button>
-              </div>
-            );
-          })}
+              );
+            }
+          )}
         </div>
       </main>
       <div class="pagination flex-center pd-m">

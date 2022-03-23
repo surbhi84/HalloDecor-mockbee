@@ -1,19 +1,7 @@
 import "./home.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { Categories } from "../../components";
 
 export const Home = () => {
-  useEffect(() => {
-    (async function () {
-      try {
-        let category = await axios.get("/api/categories");
-        setCategories(category.data.categories);
-      } catch (err) {}
-    })();
-  });
-
-  const [categories, setCategories] = useState([]);
-
   return (
     <>
       <main className="flex-col">
@@ -35,17 +23,17 @@ export const Home = () => {
 
         {/* <!-- block-2 --> */}
         <div className="display-block flex-row">
-          {broadCategories.map((bCategory) => {
+          {broadCategories.map(({ category, imgSrc, imgAlt, link }) => {
             return (
-              <div className="category-overlay-card" key={bCategory.category}>
+              <div className="category-overlay-card" key={category}>
                 <div className="inner-category-overlay card-scale flex-center">
                   <img
-                    src={bCategory.imgSrc}
-                    alt={bCategory.imgAlt}
+                    src={imgSrc}
+                    alt={imgAlt}
                     className="responsive-img opaque"
                   />
-                  <a className="text-overlay-card" href={bCategory.link}>
-                    {bCategory.category}
+                  <a className="text-overlay-card" href={link}>
+                    {category}
                   </a>
                 </div>
               </div>
@@ -56,22 +44,7 @@ export const Home = () => {
 
         {/* <!-- block-3 --> */}
         <div className="display-block flex-row-wrap flex-center">
-          {categories.map((category) => {
-            return (
-              <div className="category-card" key={category.category}>
-                <a className="text-dec-none" href={category.link}>
-                  <div className="inner-category-card card-scale">
-                    <img
-                      src={category.imgSrc}
-                      alt={category.imgAlt}
-                      className="responsive-img"
-                    />
-                    <p className="mg-xs text-center">{category.category}</p>
-                  </div>
-                </a>
-              </div>
-            );
-          })}
+          <Categories />
         </div>
         {/* <!-- end of block-3 --> */}
       </main>

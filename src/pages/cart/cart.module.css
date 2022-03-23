@@ -13,6 +13,8 @@
 .main-cart {
   margin: var(--spacing-xl);
   margin-bottom: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .short-btn {
@@ -25,6 +27,7 @@
 .amt-detail {
   padding: var(--spacing-xs);
   width: 22rem;
+  margin: var(--spacing-md);
 }
 
 .full-width {
@@ -48,5 +51,11 @@
   .card-ecom-hrz > img {
     width: 10rem;
     height: 15rem;
+  }
+
+  .amt-detail {
+    padding: var(--spacing-xs);
+    width: 22rem;
+    /* margin: var(--spacing-xs); */
   }
 }
