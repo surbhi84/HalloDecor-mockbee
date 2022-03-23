@@ -1,7 +1,6 @@
-import prodList from "./productList.module.css";
-import filter from "./filter.module.css";
-import foot from "../../components/footer/footer.module.css";
-import { Categories, Error } from "../../components";
+import { products, filter } from "..";
+import foot from "components/footer/footer.module.css";
+import { Categories, Error } from "components";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -25,11 +24,11 @@ export function ProductList() {
     <>
       {error && <Error err={"Products can't be loaded"} />}
 
-      <div className={`${prodList["parting"]} flex-row`}>
+      <div className="parting flex-row">
         <Categories nav={"nav"} />
       </div>
 
-      <main className={prodList["main-content"]}>
+      <main className={products["main-content"]}>
         <div className={filter.filter}>
           <div className={`flex-row ${filter["filter-head"]}`}>
             <h4 className="marg-un">Filters</h4>
@@ -114,11 +113,11 @@ export function ProductList() {
               discount,
             }) => {
               return (
-                <div className={prodList["card-ecom"]} key={id}>
-                  <span className={`card-badge ${prodList["card-badg"]}`}>
+                <div className={products["card-ecom"]} key={id}>
+                  <span className={`card-badge ${products["card-badg"]}`}>
                     {category !== "" ? category : ""}
                   </span>
-                  <button className={prodList["like-btn"]}>
+                  <button className={products["like-btn"]}>
                     <img src="/assets/icons/redHeart.svg" alt="heart icon" />
                   </button>
                   <img
@@ -126,7 +125,7 @@ export function ProductList() {
                     alt={productAlt}
                     className="responsive-img"
                   />
-                  <div className={prodList["product-details"]}>
+                  <div className={products["product-details"]}>
                     <h4 className="marg-un">{brand}</h4>
                     <p className="marg-un">{product}</p>
                     <strong> ₹{discPrice} </strong> <s>{price}</s>

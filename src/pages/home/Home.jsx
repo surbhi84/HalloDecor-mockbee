@@ -1,5 +1,5 @@
 import "./home.css";
-import { Categories } from "../../components";
+import { Categories } from "components";
 
 export const Home = () => {
   return (

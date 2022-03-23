@@ -2,12 +2,6 @@
   position: relative;
 }
 
-.parting {
-  justify-content: space-evenly;
-  padding: var(--spacing-l);
-  background-color: var(--primary-color-bg);
-}
-
 .text-link {
   color: var(--primary-color);
   border-bottom: 2px solid transparent;

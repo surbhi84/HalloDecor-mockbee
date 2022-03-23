@@ -74,8 +74,15 @@ main {
   border-bottom: 2px solid var(--primary-color);
   transition: transform 0.1s ease;
 }
+
 .full-width {
   width: 100%;
+}
+
+.parting {
+  justify-content: space-evenly;
+  padding: var(--spacing-l);
+  background-color: var(--primary-color-bg);
 }
 
 /* media queries for header and home page */
