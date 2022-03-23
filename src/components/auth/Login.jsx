@@ -12,20 +12,20 @@ export function Login() {
         >
           <h3 className={auth["auth-heading"]}>Login</h3>
 
-          <label className={`flex-col gap-sm ${auth["full-width"]}`}>
+          <label className={`flex-col gap-sm full-width`}>
             Enter your email id
             <input
               type="text"
-              className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
+              className={`full-width input-line ${auth["input-line"]} `}
             />
           </label>
 
-          <label className={`flex-col gap-sm ${auth["full-width"]}`}>
+          <label className={`flex-col gap-sm full-width`}>
             Enter password
             <div className="flex-row">
               <input
                 type="password"
-                className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
+                className={`full-width input-line ${auth["input-line"]}  `}
               />
               <span className="pwd-eye">
                 <i className="fas fa-eye-slash"></i>
@@ -33,7 +33,7 @@ export function Login() {
             </div>
           </label>
 
-          <div className={`flex-row spc-btwn ${auth["full-width"]}`}>
+          <div className={`flex-row spc-btwn full-width`}>
             <label>
               <input type="checkbox" /> Remember me
             </label>

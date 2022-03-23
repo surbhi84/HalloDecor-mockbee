@@ -4,3 +4,4 @@ export { Carousel } from "./carousel/Carousel";
 export { Login } from "./auth/Login";
 export { Signup } from "./auth/Signup";
 export { Error } from "./Error";
+export { Categories } from "./Categories";

@@ -11,22 +11,22 @@ export function Signup() {
           <h3 className={auth["auth-heading"]}>Sign up</h3>
 
           {["First Name", "Last Name", "Email id"].map((label) => (
-            <label className={`flex-col gap-sm ${auth["full-width"]}`}>
+            <label className={`flex-col gap-sm full-width`}>
               {label}
               <input
                 type="text"
-                className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
+                className={`input-line ${auth["input-line"]}  full-width`}
               />
             </label>
           ))}
 
           {["Choose a password", "Confirm password"].map((label) => (
-            <label className={`flex-col gap-sm ${auth["full-width"]}`}>
+            <label className={`flex-col gap-sm full-width`}>
               {label}
               <div className="flex-row">
                 <input
                   type="password"
-                  className={`input-line ${auth["input-line"]}  ${auth["full-width"]}`}
+                  className={`input-line full-width ${auth["input-line"]} `}
                 />
                 <span className="pwd-eye">
                   <i className="fas fa-eye-slash"></i>

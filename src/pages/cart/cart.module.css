@@ -1,0 +1,61 @@
+.card-ecom-hrz {
+  margin: 2rem;
+  width: 30rem;
+  padding: var(--spacing-xs);
+  border: 2px solid var(--primary-color-bg);
+}
+
+.card-ecom-hrz > img {
+  width: 15rem;
+  height: 18rem;
+}
+
+.main-cart {
+  margin: var(--spacing-xl);
+  margin-bottom: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.short-btn {
+  border: none;
+  width: 1.5rem;
+  background-color: var(--primary-color);
+  border-radius: 0.2rem;
+}
+
+.amt-detail {
+  padding: var(--spacing-xs);
+  width: 22rem;
+  margin: var(--spacing-md);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.break {
+  color: var(--primary-color);
+}
+
+@media screen and (max-width: 480px) {
+  .main-cart {
+    display: flex;
+    flex-direction: column;
+  }
+  .card-ecom-hrz {
+    width: 90vw;
+    padding: var(--spacing-xs);
+  }
+
+  .card-ecom-hrz > img {
+    width: 10rem;
+    height: 15rem;
+  }
+
+  .amt-detail {
+    padding: var(--spacing-xs);
+    width: 22rem;
+    /* margin: var(--spacing-xs); */
+  }
+}
