@@ -12,7 +12,7 @@ export const products = [
     category: "#1Bestseller",
     brand: "Vinaya Beauty",
     product: "Handmade soap set",
-    productImg: "assets/images/stackedSoap.webp",
+    productImg: process.env.PUBLIC_URL + "assets/images/stackedSoap.webp",
     productAlt: "handmade soap set",
     discPrice: 749,
     price: 999,
