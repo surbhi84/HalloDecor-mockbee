@@ -75,7 +75,7 @@ export const Filter = ({
             action: filterHandcrafted,
             check: showHandcrafted,
           },
-        ].map(({ name, check }) => {
+        ].map(({ name, check, action }) => {
           return (
             <label key={name}>
               <input
