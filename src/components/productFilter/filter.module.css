@@ -5,6 +5,7 @@
   padding: var(--spacing-sm);
   background-color: var(--primary-color-bg);
   accent-color: var(--primary-color);
+  cursor: default;
 }
 
 .filter-head {

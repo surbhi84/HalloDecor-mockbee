@@ -7,6 +7,7 @@ import axios from "axios";
 export function ProductList() {
   const [productList, setProductList] = useState([]);
   const [error, setError] = useState(false);
+  const [hover, setHover] = useState([false, ""]);
 
   const [
     {
@@ -60,6 +61,7 @@ export function ProductList() {
       ({ inStock, discount, category, rating, discPrice }) =>
         (outOfStock ? true : inStock) &&
         (withDiscount ? discount > 0 : true) &&
+        // the below condition checks if any category is selected or not, if none is selected then all items will return and if any category is selected then we check which category is selected and those item will be returned else false will return.
         (!(showBestseller || showTrending || showHandcrafted)
           ? true
           : (showBestseller ? category === "#1Bestseller" : false) ||
@@ -81,8 +83,6 @@ export function ProductList() {
     ratingSelected,
     rangePrice,
   });
-
-  const [hover, setHover] = useState([false, ""]);
 
   return (
     <>

@@ -31,7 +31,7 @@ export const Filter = ({
             filterDispatch(ClearFilters());
           }}
         >
-          <i className="fas fa-times"></i>
+          Clear <i className="fas fa-times"></i>
         </div>
       </div>
 
