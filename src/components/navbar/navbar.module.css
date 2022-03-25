@@ -25,6 +25,7 @@
 .nav-head {
   width: 100%;
   background-color: var(--primary-color-bg);
+  scrollbar-width: none;
 }
 
 .nav-head::-webkit-scrollbar {

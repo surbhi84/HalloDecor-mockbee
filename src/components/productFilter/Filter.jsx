@@ -38,10 +38,10 @@ export const Filter = ({
       <div>
         <h4>Price</h4>
         <div className={filter["display-wrap"]}>
-          <div className={filter["input-range-div"]}>
+          <div className={`${filter["input-range-div"]}`}>
             <input
               type="range"
-              className={filter["money-slider"]}
+              className={`${filter["money-slider"]} full-width`}
               min={500}
               max={2000}
               step={100}
@@ -50,11 +50,10 @@ export const Filter = ({
                 filterDispatch(filterRange(e.target.value));
               }}
             />
-            <ul className="range-values flex-row marg-un">
-              <li className="bold-text">₹500</li>
-              <li className="bold-text">₹{rangePrice}</li>
-              <li className="bold-text">₹2000 </li>
-            </ul>
+            <div className="flex-row spc-btwn">
+              <span className="bold-text ">₹500</span>
+              <span className="bold-text ">₹{rangePrice}</span>
+            </div>
           </div>
         </div>
       </div>
