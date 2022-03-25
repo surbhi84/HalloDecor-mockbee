@@ -18,7 +18,7 @@ export const products = [
     price: 999,
     discount: 25,
     inStock: true,
-    rating: 4.5,
+    rating: 1,
     quantity: 0,
   },
   {
@@ -32,8 +32,8 @@ export const products = [
     discPrice: 1349,
     price: 2139,
     discount: 35,
-    inStock: true,
-    rating: 4,
+    inStock: false,
+    rating: 2,
     quantity: 0,
   },
   {
@@ -48,7 +48,7 @@ export const products = [
     price: 1699,
     discount: 23,
     inStock: true,
-    rating: 4,
+    rating: 1,
     quantity: 0,
   },
   {
@@ -77,15 +77,15 @@ export const products = [
     discPrice: 895,
     price: 1489,
     discount: 40,
-    inStock: true,
-    rating: 4.5,
+    inStock: false,
+    rating: 5,
     quantity: 0,
   },
 
   {
     // 6
     id: uuid(),
-    category: "",
+    category: "Handcrafted",
     brand: "Mansa creations",
     product: "Ceramic vase",
     productImg: "/assets/images/artanddecor.webp",
@@ -93,11 +93,41 @@ export const products = [
     discPrice: 1456,
     price: 1799,
     discount: 40,
-    inStock: true,
+    inStock: false,
     rating: 4.5,
     quantity: 0,
   },
 
+  {
+    // 3 - 7
+    id: uuid(),
+    category: "#1Bestseller",
+    brand: "Nature jewels",
+    product: "Storage basket",
+    productImg: "/assets/images/basket1.webp",
+    productAlt: "handmade woven storage basket",
+    discPrice: 1699,
+    price: 1699,
+    discount: 0,
+    inStock: true,
+    rating: 2,
+    quantity: 0,
+  },
+  {
+    // 4 - 8
+    id: uuid(),
+    category: "Trending",
+    brand: "Windbox Decor",
+    product: "Set of wall portraits",
+    productImg: "/assets/images/whitebase.webp",
+    productAlt: "wall portraits",
+    discPrice: 999,
+    price: 999,
+    discount: 0,
+    inStock: true,
+    rating: 3,
+    quantity: 0,
+  },
   //  {
   //    {
   //   id: uuid(),

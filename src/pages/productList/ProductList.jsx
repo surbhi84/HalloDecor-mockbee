@@ -1,12 +1,26 @@
 import { products } from "..";
 import { Filter, Categories, Error } from "components";
+import { useFilter } from "reducers/filterReducer/reducer";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 export function ProductList() {
   const [productList, setProductList] = useState([]);
-
   const [error, setError] = useState(false);
+
+  const [
+    {
+      outOfStock,
+      sortBy,
+      showBestseller,
+      showTrending,
+      showHandcrafted,
+      withDiscount,
+      ratingSelected,
+      rangePrice,
+    },
+    filterDispatch,
+  ] = useFilter();
 
   useEffect(() => {
     (async function () {
@@ -19,6 +33,55 @@ export function ProductList() {
     })();
   }, []);
 
+  function getSortedProducts(products, sortBy) {
+    console.log(sortBy, "i am sorting data");
+    if (sortBy === "PRICE_LOW_TO_HIGH") {
+      return products.sort((a, b) => a.discPrice - b.discPrice);
+    }
+    if (sortBy === "PRICE_HIGH_TO_LOW") {
+      return products.sort((a, b) => b.discPrice - a.discPrice);
+    }
+    return products;
+  }
+
+  function getFilteredProducts(
+    sortedProducts,
+    {
+      showBestseller,
+      showTrending,
+      showHandcrafted,
+      outOfStock,
+      withDiscount,
+      ratingSelected,
+      rangePrice,
+    }
+  ) {
+    return sortedProducts.filter(
+      ({ inStock, discount, category, rating, discPrice }) =>
+        (outOfStock ? true : inStock) &&
+        (withDiscount ? discount > 0 : true) &&
+        (!(showBestseller || showTrending || showHandcrafted)
+          ? true
+          : (showBestseller ? category === "#1Bestseller" : false) ||
+            (showTrending ? category === "Trending" : false) ||
+            (showHandcrafted ? category === "Handcrafted" : false)) &&
+        rating >= ratingSelected &&
+        discPrice <= rangePrice
+    );
+  }
+
+  const sortedProducts = getSortedProducts(productList, sortBy);
+
+  const filteredProducts = getFilteredProducts(sortedProducts, {
+    showBestseller,
+    showTrending,
+    showHandcrafted,
+    outOfStock,
+    withDiscount,
+    ratingSelected,
+    rangePrice,
+  });
+
   return (
     <>
       {error && <Error err={"Products can't be loaded"} />}
@@ -28,10 +91,20 @@ export function ProductList() {
       </div>
 
       <main className={products["main-content"]}>
-        <Filter />
+        <Filter
+          filterDispatch={filterDispatch}
+          sortBy={sortBy}
+          outOfStock={outOfStock}
+          showBestseller={showBestseller}
+          showTrending={showTrending}
+          showHandcrafted={showHandcrafted}
+          withDiscount={withDiscount}
+          ratingSelected={ratingSelected}
+          rangePrice={rangePrice}
+        />
 
         <div className="flex-row-wrap pd-m gap-xl flex-center product-display">
-          {productList.map(
+          {filteredProducts.map(
             ({
               id,
               category,
@@ -42,9 +115,18 @@ export function ProductList() {
               discPrice,
               price,
               discount,
+              inStock,
+              rating,
             }) => {
               return (
-                <div className={products["card-ecom"]} key={id}>
+                <div
+                  className={
+                    inStock
+                      ? products["card-ecom"]
+                      : `${products["card-ecom"]} ${products["card-out-of-stock"]}`
+                  }
+                  key={id}
+                >
                   <span className={`card-badge ${products["card-badg"]}`}>
                     {category !== "" ? category : ""}
                   </span>
@@ -61,6 +143,7 @@ export function ProductList() {
                     <p className="marg-un">{product}</p>
                     <strong> ₹{discPrice} </strong> <s>{price}</s>
                     <span className="mg-xs">{discount}% OFF</span>
+                    Rating {rating}
                   </div>
                   <button className="cart-btn gap-sm">
                     Add to cart

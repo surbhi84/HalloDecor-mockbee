@@ -36,6 +36,12 @@
   height: 16.5rem;
 }
 
+.card-out-of-stock {
+  opacity: 0.6;
+}
+.card-out-of-stock:hover {
+}
+
 .cart-btn {
   display: flex;
   align-items: center;
