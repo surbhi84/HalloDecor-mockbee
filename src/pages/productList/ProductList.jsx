@@ -82,6 +82,8 @@ export function ProductList() {
     rangePrice,
   });
 
+  const [hover, setHover] = useState([false, ""]);
+
   return (
     <>
       {error && <Error err={"Products can't be loaded"} />}
@@ -120,35 +122,52 @@ export function ProductList() {
             }) => {
               return (
                 <div
-                  className={
-                    inStock
-                      ? products["card-ecom"]
-                      : `${products["card-ecom"]} ${products["card-out-of-stock"]}`
-                  }
-                  key={id}
+                  className={products["outer-card-div"]}
+                  onMouseEnter={() => setHover([true, id])}
+                  onMouseLeave={() => setHover([false, id])}
                 >
-                  <span className={`card-badge ${products["card-badg"]}`}>
-                    {category !== "" ? category : ""}
-                  </span>
-                  <button className={products["like-btn"]}>
-                    <img src="/assets/icons/redHeart.svg" alt="heart icon" />
-                  </button>
-                  <img
-                    src={productImg}
-                    alt={productAlt}
-                    className="responsive-img"
-                  />
-                  <div className={products["product-details"]}>
-                    <h4 className="marg-un">{brand}</h4>
-                    <p className="marg-un">{product}</p>
-                    <strong> ₹{discPrice} </strong> <s>{price}</s>
-                    <span className="mg-xs">{discount}% OFF</span>
-                    Rating {rating}
+                  {!inStock && (
+                    <p
+                      className={
+                        hover[0] === true && hover[1] === id
+                          ? `${products["outStock"]} ${products["visible"]}`
+                          : products["outStock"]
+                      }
+                    >
+                      Out Of Stock
+                    </p>
+                  )}
+                  <div
+                    className={
+                      inStock
+                        ? products["card-ecom"]
+                        : `${products["card-ecom"]} ${products["card-out-of-stock"]}`
+                    }
+                    key={id}
+                  >
+                    <span className={`card-badge ${products["card-badg"]}`}>
+                      {category !== "" ? category : ""}
+                    </span>
+                    <button className={products["like-btn"]}>
+                      <img src="/assets/icons/redHeart.svg" alt="heart icon" />
+                    </button>
+                    <img
+                      src={productImg}
+                      alt={productAlt}
+                      className="responsive-img"
+                    />
+                    <div className={products["product-details"]}>
+                      <h4 className="marg-un">{brand}</h4>
+                      <p className="marg-un">{product}</p>
+                      <strong> ₹{discPrice} </strong> <s>{price}</s>
+                      <span className="mg-xs">{discount}% OFF</span>
+                      Rating {rating}
+                    </div>
+                    <button className="cart-btn gap-sm">
+                      Add to cart
+                      <img src="/assets/icons/bluecart.svg" alt="cart icon" />
+                    </button>
                   </div>
-                  <button className="cart-btn gap-sm">
-                    Add to cart
-                    <img src="/assets/icons/bluecart.svg" alt="cart icon" />
-                  </button>
                 </div>
               );
             }
