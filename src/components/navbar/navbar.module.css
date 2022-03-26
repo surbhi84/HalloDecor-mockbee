@@ -16,7 +16,12 @@
   top: 0;
   background-color: var(--primary-color-bg);
   scrollbar-width: none;
+  overflow-x: hidden;
 }
+.nav-head-home::-webkit-scrollbar {
+  display: none;
+}
+
 .nav-head {
   width: 100%;
   background-color: var(--primary-color-bg);

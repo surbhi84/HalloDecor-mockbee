@@ -2,12 +2,6 @@
   position: relative;
 }
 
-.parting {
-  justify-content: space-evenly;
-  padding: var(--spacing-l);
-  background-color: var(--primary-color-bg);
-}
-
 .text-link {
   color: var(--primary-color);
   border-bottom: 2px solid transparent;
@@ -40,6 +34,34 @@
   margin-top: var(--spacing-2xs);
   width: 94%;
   height: 16.5rem;
+}
+.card-ecom:hover {
+  scale: 1.02;
+  transition: scale 0.1s;
+}
+
+.outer-card-div {
+  position: relative;
+}
+
+.card-out-of-stock {
+  opacity: 0.6;
+}
+
+.outStock {
+  font-size: var(--fs-m);
+  position: absolute;
+  top: 42%;
+  left: 26%;
+  z-index: 1;
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+  transition: visibility 0.1s;
+  transition-property: visibility;
+  transition-delay: 0.1s;
 }
 
 .cart-btn {

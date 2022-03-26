@@ -1,18 +1,17 @@
-import product from "../productList/productList.module.css";
-import wish from "./wishlist.module.css";
+import { products, wish } from "..";
 import { wishData } from "./wishlistData";
 
 export function Wishlist() {
   return (
     <>
-      <div className={`${product["parting"]} flex-row`}>
+      <div className="parting flex-row">
         <h2 className="text-link">My Wishlist</h2>
       </div>
       <div className="flex-center gap-xl mg-m mg-btm">
         {wishData.map((wishItem) => {
           return (
             <div
-              className={`${product["card-ecom"]} ${wish["wishlist-card"]}`}
+              className={`${products["card-ecom"]} ${wish["wishlist-card"]}`}
               key={wishItem.id}
             >
               <img
@@ -21,7 +20,7 @@ export function Wishlist() {
                 className="responsive-img"
               />
               <div
-                className={`${product["product-details"]} flex-col flex-center`}
+                className={`${products["product-details"]} flex-col flex-center`}
               >
                 <h4 className="marg-un">{wishItem.brand}</h4>
                 <p className="marg-un">{wishItem.product}</p>

@@ -1,6 +1,5 @@
 import carousel from "./carousel.module.css";
 import { useState } from "react";
-import { v4 as uuid } from "uuid";
 
 function SliderLabels({ activeSlide, setActiveSlide, inputNum }) {
   return (
@@ -8,7 +7,7 @@ function SliderLabels({ activeSlide, setActiveSlide, inputNum }) {
       {inputNum.map((item) => {
         return (
           <label
-            key={uuid()}
+            key={item}
             htmlFor={item}
             onClick={() => {
               setActiveSlide(item);
@@ -33,19 +32,19 @@ export function Carousel() {
       imgClass: "top-fit",
     },
     {
-      divClassName: `${carousel["slide"]}`,
+      divClassName: carousel["slide"],
       src: "/assets/images/wallplanters.webp",
       alt: "planters on a wall",
       imgClass: "",
     },
     {
-      divClassName: `${carousel["slide"]}`,
+      divClassName: carousel["slide"],
       src: "/assets/images/portraitwall.webp",
       alt: "three portraits on a wall",
       imgClass: "bottom-fit",
     },
     {
-      divClassName: `${carousel["slide"]}`,
+      divClassName: carousel["slide"],
       src: "/assets/images/yellowsofa1.webp",
       alt: "living room sofa",
       imgClass: "bottom-fit",
@@ -57,7 +56,7 @@ export function Carousel() {
       <div className={carousel["slides"]}>
         {slideList.map(({ divClassName, src, alt, imgClass }) => {
           return (
-            <div className={divClassName} key={uuid()}>
+            <div className={divClassName} key={src}>
               <img src={src} alt={alt} className={imgClass} />
             </div>
           );

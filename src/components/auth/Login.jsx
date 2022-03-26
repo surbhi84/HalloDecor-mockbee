@@ -1,5 +1,4 @@
 import auth from "./auth.module.css";
-import foot from "../footer/footer.module.css";
 import "../../css/common.css";
 import { Link } from "react-router-dom";
 
@@ -38,7 +37,7 @@ export function Login() {
               <input type="checkbox" /> Remember me
             </label>
 
-            <a href="#" className={foot["footer-link"]}>
+            <a href="#" className="footer-link">
               Forgot your password?
             </a>
           </div>

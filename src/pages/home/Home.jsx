@@ -1,5 +1,6 @@
 import "./home.css";
-import { Categories } from "../../components";
+import { Categories } from "components";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
@@ -32,9 +33,9 @@ export const Home = () => {
                     alt={imgAlt}
                     className="responsive-img opaque"
                   />
-                  <a className="text-overlay-card" href={link}>
+                  <Link className="text-overlay-card" to={link}>
                     {category}
-                  </a>
+                  </Link>
                 </div>
               </div>
             );
@@ -57,18 +58,18 @@ export const broadCategories = [
     category: "Bestsellers",
     imgSrc: "/assets/images/whitemirror1.webp",
     imgAlt: "mirror on a wall and cuishons",
-    link: "/productList",
+    link: "/products",
   },
   {
     category: "Handcrafted",
     imgSrc: "/assets/images/basket1.webp",
     imgAlt: "basket image",
-    link: "/productList",
+    link: "/products",
   },
   {
     category: "Trendsetters",
     imgSrc: "/assets/images/chairtable1.webp",
     imgAlt: "chair and table decor",
-    link: "/productList",
+    link: "/products",
   },
 ];

@@ -1,5 +1,4 @@
-import cart from "./cart.module.css";
-import prodList from "../productList/productList.module.css";
+import { cart, products } from "..";
 import { v4 as uuid } from "uuid";
 
 export function Cart() {
@@ -38,7 +37,7 @@ export function Cart() {
   ];
   return (
     <>
-      <div className={`${prodList["parting"]} flex-row`}>
+      <div className="parting flex-row">
         <h2 className="text-link">My Cart</h2>
       </div>
       <div className={`${cart["main-cart"]} `}>
@@ -59,7 +58,7 @@ export function Cart() {
                 {/* product details*/}
 
                 <div
-                  className={`${prodList["product-details"]} flex-col gap-sm`}
+                  className={`${products["product-details"]} flex-col gap-sm`}
                 >
                   <h4 className="marg-un">{item.brand}</h4>
                   <p className="marg-un">{item.product}</p>
