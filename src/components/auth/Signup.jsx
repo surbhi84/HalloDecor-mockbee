@@ -1,13 +1,20 @@
-import auth from "./auth.module.css";
-import { Link } from "react-router-dom";
 import { useReducer, useState } from "react";
+import auth from "./auth.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import { postUserSignup } from "api.js";
+import { Error } from "../Error";
 
 export function Signup() {
+  const [isPwdVisible, setIsPwdVisible] = useState(false);
+  const [isConfirmPwdVisible, setIsConfirmPwdVisible] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
   const [signupInfo, signupDispatch] = useReducer(signup, {
     firstName: "",
     lastName: "",
     email: "",
-    pwd: "",
+    password: "",
     confirmPwd: "",
     tAC: false,
   });
@@ -21,18 +28,13 @@ export function Signup() {
       case "EMAIL":
         return { ...state, email: payload };
       case "PWD":
-        return { ...state, pwd: payload };
+        return { ...state, password: payload };
       case "CONFIRMPWD":
         return { ...state, confirmPwd: payload };
       case "TAC":
         return { ...state, tAc: !state.tAc };
     }
   }
-
-  function postUser(firstName, lastName, email, pwd) {}
-
-  const [isPwdVisible, setIsPwdVisible] = useState(false);
-  const [isConfirmPwdVisible, setIsConfirmPwdVisible] = useState(false);
 
   return (
     <>
@@ -108,22 +110,24 @@ export function Signup() {
           </div>
           <button
             className="cart-btn full-width"
-            onClick={() => {
+            onClick={async () => {
               console.log(
                 signupInfo.firstName,
                 signupInfo.lastName,
                 signupInfo.email,
-                signupInfo.pwd,
+                signupInfo.password,
                 signupInfo.confirmPwd,
                 signupInfo.tAc
               );
-              postUser(
-                signupInfo.firstName,
-                signupInfo.lastName,
-                signupInfo.email,
-                signupInfo.pwd
-              );
+              try {
+                const response = await postUserSignup(signupInfo);
+                setError("");
+                navigate("/products");
+              } catch (err) {
+                setError(err.response.data.message);
+              }
             }}
+            disabled={isPwdVisible === isConfirmPwdVisible}
           >
             Create New Account
           </button>
@@ -134,6 +138,7 @@ export function Signup() {
           >
             Already have an account
           </Link>
+          {error !== "" && <Error err={error} />}
         </div>
       </main>
     </>

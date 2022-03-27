@@ -40,7 +40,7 @@ export const addItemToCartHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          message: "The email you entered is not Registered. Not Found error",
         }
       );
     }
@@ -59,7 +59,7 @@ export const addItemToCartHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        message: error.message,
       }
     );
   }
@@ -78,7 +78,7 @@ export const removeItemFromCartHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          message: "The email you entered is not Registered. Not Found error",
         }
       );
     }
@@ -92,7 +92,7 @@ export const removeItemFromCartHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        message: error.message,
       }
     );
   }
@@ -113,7 +113,7 @@ export const updateCartItemHandler = function (schema, request) {
         404,
         {},
         {
-          errors: ["The email you entered is not Registered. Not Found error"],
+          message: "The email you entered is not Registered. Not Found error",
         }
       );
     }
@@ -141,7 +141,7 @@ export const updateCartItemHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        message: error.message,
       }
     );
   }
