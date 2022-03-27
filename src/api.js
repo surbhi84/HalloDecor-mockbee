@@ -10,3 +10,10 @@ export function postUserSignup({ firstName, lastName, email, password }) {
     password,
   });
 }
+
+export function postUserLogin({ email, password }) {
+  return axios.post(BASEURL + "/api/auth/login", {
+    email,
+    password,
+  });
+}

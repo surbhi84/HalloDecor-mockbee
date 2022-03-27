@@ -5,7 +5,7 @@ import { useReducer, useState } from "react";
 
 export function Login() {
   const [isPwdVisible, setIsPwdVisible] = useState(false);
-  const [loginInfo, loginDispatch] = useReducer(login, {
+  const [loginInfo, loginInfoDispatch] = useReducer(login, {
     email: "",
     password: "",
     rememberMe: false,
@@ -36,7 +36,7 @@ export function Login() {
               type="text"
               className={`full-width input-line ${auth["input-line"]} `}
               onChange={(e) => {
-                loginDispatch({ type: "EMAIL", payload: e.target.value });
+                loginInfoDispatch({ type: "EMAIL", payload: e.target.value });
               }}
             />
           </label>
@@ -48,7 +48,7 @@ export function Login() {
                 type={isPwdVisible ? "text" : "password"}
                 className={`full-width input-line ${auth["input-line"]}  `}
                 onChange={(e) => {
-                  loginDispatch({ type: "PWD", payload: e.target.value });
+                  loginInfoDispatch({ type: "PWD", payload: e.target.value });
                 }}
               />
               <span
@@ -67,7 +67,7 @@ export function Login() {
               <input
                 type="checkbox"
                 onChange={() => {
-                  loginDispatch({ type: "REMEMBER" });
+                  loginInfoDispatch({ type: "REMEMBER" });
                 }}
               />{" "}
               Remember me
