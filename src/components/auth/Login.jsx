@@ -1,8 +1,27 @@
 import auth from "./auth.module.css";
-import "../../css/common.css";
+import "css/common.css";
 import { Link } from "react-router-dom";
+import { useReducer, useState } from "react";
 
 export function Login() {
+  const [isPwdVisible, setIsPwdVisible] = useState(false);
+  const [loginInfo, loginDispatch] = useReducer(login, {
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+
+  function login(state, { type, payload }) {
+    switch (type) {
+      case "EMAIL":
+        return { ...state, email: payload };
+      case "PWD":
+        return { ...state, password: payload };
+      case "REMEMBER":
+        return { ...state, rememberMe: !state.rememberMe };
+    }
+  }
+
   return (
     <>
       <main className="flex-center">
@@ -16,6 +35,9 @@ export function Login() {
             <input
               type="text"
               className={`full-width input-line ${auth["input-line"]} `}
+              onChange={(e) => {
+                loginDispatch({ type: "EMAIL", payload: e.target.value });
+              }}
             />
           </label>
 
@@ -23,10 +45,18 @@ export function Login() {
             Enter password
             <div className="flex-row">
               <input
-                type="password"
+                type={isPwdVisible ? "text" : "password"}
                 className={`full-width input-line ${auth["input-line"]}  `}
+                onChange={(e) => {
+                  loginDispatch({ type: "PWD", payload: e.target.value });
+                }}
               />
-              <span className="pwd-eye">
+              <span
+                className="pwd-eye"
+                onClick={() => {
+                  setIsPwdVisible((p) => !p);
+                }}
+              >
                 <i className="fas fa-eye-slash"></i>
               </span>
             </div>
@@ -34,7 +64,13 @@ export function Login() {
 
           <div className={`flex-row spc-btwn full-width`}>
             <label>
-              <input type="checkbox" /> Remember me
+              <input
+                type="checkbox"
+                onChange={() => {
+                  loginDispatch({ type: "REMEMBER" });
+                }}
+              />{" "}
+              Remember me
             </label>
 
             <a href="#" className="footer-link">
