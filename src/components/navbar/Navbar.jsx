@@ -2,6 +2,7 @@ import navbar from "./navbar.module.css";
 import { Carousel } from "components";
 import { Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useUser } from "hooks/context/userDataContext";
 
 export const Navbar = ({ isHome }) => {
   useEffect(() => {
@@ -9,6 +10,8 @@ export const Navbar = ({ isHome }) => {
   }, []);
 
   const [isHamburgerView, setIsHamburgerView] = useState(true);
+  const { userData, userDataDispatch, isAuth } = useUser();
+
   return (
     <header className="home-head">
       <Routes>
@@ -87,14 +90,25 @@ export const Navbar = ({ isHome }) => {
                 Cart
               </Link>
             </li>
-
             <li>
-              <Link
-                to="/pages/login/"
-                className={` ${navbar["nav-link"]} ${navbar["logout-btn"]}`}
-              >
-                Log out
-              </Link>
+              {isAuth() ? (
+                <Link
+                  to="/"
+                  className={` ${navbar["nav-link"]} ${navbar["logout-btn"]}`}
+                  onClick={() => {
+                    userDataDispatch({ type: "LOGOUT" });
+                  }}
+                >
+                  Log out
+                </Link>
+              ) : (
+                <Link
+                  to="/login"
+                  className={` ${navbar["nav-link"]} ${navbar["logout-btn"]}`}
+                >
+                  Login
+                </Link>
+              )}
             </li>
           </ul>
         </div>

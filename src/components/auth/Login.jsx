@@ -1,10 +1,18 @@
 import auth from "./auth.module.css";
 import "css/common.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useReducer, useState } from "react";
+import { postUserLogin } from "../../api";
+import { useUser } from "../../hooks/context/userDataContext";
+import { Error } from "components";
 
 export function Login() {
   const [isPwdVisible, setIsPwdVisible] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const { userDataDispatch } = useUser();
+
   const [loginInfo, loginInfoDispatch] = useReducer(login, {
     email: "",
     password: "",
@@ -78,7 +86,21 @@ export function Login() {
             </a>
           </div>
 
-          <button className="cart-btn full-width">Login</button>
+          <button
+            className="cart-btn full-width"
+            onClick={async () => {
+              try {
+                let response = await postUserLogin(loginInfo);
+                setError("");
+                userDataDispatch({ type: "LOGIN", payload: response.data });
+                navigate("/products");
+              } catch (err) {
+                setError(err.response.data.message);
+              }
+            }}
+          >
+            Login
+          </button>
           <div>or</div>
 
           <Link
@@ -87,6 +109,7 @@ export function Login() {
           >
             Create New Account
           </Link>
+          {error !== "" && <Error err={error} setError={setError} />}
         </div>
       </main>
     </>
