@@ -1,9 +1,5 @@
 import { Login } from "components";
 
 export const Profile = () => {
-  return (
-    <>
-      <Login />
-    </>
-  );
+  return <h1>This is your Profile.</h1>;
 };
