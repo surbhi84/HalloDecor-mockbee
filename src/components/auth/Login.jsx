@@ -3,7 +3,7 @@ import "css/common.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useReducer, useState } from "react";
 import { postUserLogin } from "../../api";
-import { useUser } from "../../hooks/context/userDataContext";
+import { useUserData } from "../../hooks/context/userDataContext";
 import { Error } from "components";
 
 export function Login() {
@@ -11,11 +11,11 @@ export function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const { userDataDispatch } = useUser();
+  const { userDataDispatch } = useUserData();
 
   const [loginInfo, loginInfoDispatch] = useReducer(login, {
-    email: "",
-    password: "",
+    email: "adarshbalika@gmail.com",
+    password: "adarshBalika123",
     rememberMe: false,
   });
 
@@ -42,6 +42,7 @@ export function Login() {
             Enter your email id
             <input
               type="text"
+              value={loginInfo.email}
               className={`full-width input-line ${auth["input-line"]} `}
               onChange={(e) => {
                 loginInfoDispatch({ type: "EMAIL", payload: e.target.value });
@@ -54,6 +55,7 @@ export function Login() {
             <div className="flex-row">
               <input
                 type={isPwdVisible ? "text" : "password"}
+                value={loginInfo.password}
                 className={`full-width input-line ${auth["input-line"]}  `}
                 onChange={(e) => {
                   loginInfoDispatch({ type: "PWD", payload: e.target.value });

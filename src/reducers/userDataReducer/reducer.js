@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 
-export const useUserData = () => {
+export const useUserDataReducer = () => {
   const userInitial = {
     user: {
       _id: "",

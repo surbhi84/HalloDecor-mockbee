@@ -1,10 +1,10 @@
 import { createContext, useContext, useState } from "react";
-import { useUserData } from "../../reducers/userDataReducer/reducer";
+import { useUserDataReducer } from "../../reducers/userDataReducer/reducer";
 
 const userDataContext = createContext();
 
 export function UserDataProvider({ children }) {
-  const [userData, userDataDispatch] = useUserData();
+  const [userData, userDataDispatch] = useUserDataReducer();
   const isAuth = () =>
     userData.encodedToken !== "" && userData.encodedToken !== undefined;
   return (
@@ -16,4 +16,4 @@ export function UserDataProvider({ children }) {
   );
 }
 
-export const useUser = () => useContext(userDataContext);
+export const useUserData = () => useContext(userDataContext);

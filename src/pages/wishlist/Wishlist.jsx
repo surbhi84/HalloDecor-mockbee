@@ -1,14 +1,16 @@
 import { products, wish } from "..";
-import { wishData } from "./wishlistData";
+// import { wishData } from "./wishlistData";
 
 export function Wishlist() {
+  const { user } = useUserData();
+  const { wishlist } = user;
   return (
     <>
       <div className="parting flex-row">
         <h2 className="text-link">My Wishlist</h2>
       </div>
       <div className="flex-center gap-xl mg-m mg-btm">
-        {wishData.map((wishItem) => {
+        {wishlist.map((wishItem) => {
           return (
             <div
               className={`${products["card-ecom"]} ${wish["wishlist-card"]}`}
