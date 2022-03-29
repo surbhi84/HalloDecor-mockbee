@@ -24,6 +24,8 @@ export function useSignup() {
         return { ...state, confirmPwd: payload };
       case "TAC":
         return { ...state, tAc: !state.tAc };
+      default:
+        return state;
     }
   }
   return [signupInfo, signupDispatch];

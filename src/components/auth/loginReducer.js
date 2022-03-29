@@ -15,6 +15,8 @@ export function useLogin() {
         return { ...state, password: payload };
       case "REMEMBER":
         return { ...state, rememberMe: !state.rememberMe };
+      default:
+        state;
     }
   }
   return [loginInfo, loginInfoDispatch];
