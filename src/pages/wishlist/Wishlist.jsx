@@ -13,6 +13,7 @@ export function Wishlist() {
     userDataDispatch,
   } = useUserData();
 
+  // to be implemented later( here for reference )
   // useEffect(() => {
   //   (async () => {
   //     const userWishlist = await getWishlist(encodedToken);
@@ -23,6 +24,20 @@ export function Wishlist() {
   //     });
   //   })();
   // }, []);
+
+  async function removeWishlistHandler(id) {
+    try {
+      console.log("besan");
+      await deleteWishlist(id, encodedToken);
+      setError("");
+      userDataDispatch({
+        type: "REMOVEWISHLIST",
+        payload: id,
+      });
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  }
 
   return (
     <>
@@ -35,11 +50,10 @@ export function Wishlist() {
           <h1> Your Wishlist is Empty</h1>
         ) : (
           wishlist.map((wishItem) => {
-            console.log(wishItem);
             return (
               <div
-                className={`${products["card-ecom"]} ${wish["wishlist-card"]}`}
                 key={wishItem.id}
+                className={`${products["card-ecom"]} ${wish["wishlist-card"]}`}
               >
                 <img
                   src={wishItem.productImg}
@@ -59,19 +73,8 @@ export function Wishlist() {
                 <button className="cart-btn gap-sm">Move to cart</button>
                 <button
                   className="cart-btn gap-sm"
-                  onClick={async () => {
-                    try {
-                      await deleteWishlist(wishItem.id, encodedToken);
-                      setError("");
-                      console.log(wishItem);
-                      userDataDispatch({
-                        type: "REMOVEWISHLIST",
-                        payload: wishItem.id,
-                      });
-                    } catch (err) {
-                      console.log(err);
-                      setError(err.response.data.message);
-                    }
+                  onClick={() => {
+                    removeWishlistHandler(wishItem.id);
                   }}
                 >
                   Remove from Wishlist

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { UserDataProvider } from "hooks/context/userDataContext";
+import { UserDataProvider } from "hooks";
 
 // Call make Server
 makeServer();

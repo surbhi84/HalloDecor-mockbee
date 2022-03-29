@@ -1,8 +1,8 @@
 import axios from "axios";
-import dayjs from "dayjs";
 
 const BASEURL = "";
 
+// USER RELATED API'S
 export function postUserSignup({ firstName, lastName, email, password }) {
   return axios.post(BASEURL + "/api/auth/signup", {
     firstName,
@@ -19,6 +19,7 @@ export function postUserLogin({ email, password }) {
   });
 }
 
+// WISHLIST API'S
 export function postWishlist(
   {
     id,
@@ -63,7 +64,6 @@ export function getWishlist(encodedToken) {
 }
 
 export function deleteWishlist(id, encodedToken) {
-  console.log(BASEURL + "/api/user/wishlist/" + id);
   return axios.delete(BASEURL + "/api/user/wishlist/" + id, {
     headers: { authorization: encodedToken },
   });

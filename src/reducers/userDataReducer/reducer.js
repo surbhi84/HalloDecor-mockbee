@@ -34,7 +34,7 @@ export const useUserDataReducer = () => {
         const newWishlist = state.user.wishlist.filter(
           (item) => payload !== item.id
         );
-        return { ...state, user: { ...state.user, wishlist: [newWishlist] } };
+        return { ...state, user: { ...state.user, wishlist: newWishlist } };
       }
       case "SETWISHLIST": {
         return { ...state, user: { ...state.user, wishlist: payload } };

@@ -1,9 +1,8 @@
 import { products } from "..";
-import { Filter, Categories, Error } from "components";
+import { Filter, Categories, Error, ProductItems } from "components";
 import { useFilter } from "reducers/filterReducer/reducer";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { ProductItems } from "components";
 
 export function ProductList() {
   const [productList, setProductList] = useState([]);

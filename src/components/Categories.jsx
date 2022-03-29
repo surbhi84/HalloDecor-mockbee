@@ -14,7 +14,6 @@ export const Categories = ({ nav }) => {
         setCategories(categories.data.categories);
       } catch (err) {
         setCategoryError(true);
-        console.log(err);
       }
     })();
   }, []);

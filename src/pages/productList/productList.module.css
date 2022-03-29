@@ -45,23 +45,20 @@
 }
 
 .card-out-of-stock {
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
 .outStock {
+  color: #444343;
   font-size: var(--fs-m);
   position: absolute;
   top: 42%;
   left: 26%;
   z-index: 1;
-  visibility: hidden;
 }
 
-.visible {
-  visibility: visible;
-  transition: visibility 0.1s;
-  transition-property: visibility;
-  transition-delay: 0.1s;
+.highlight {
+  color: black;
 }
 
 .cart-btn {
