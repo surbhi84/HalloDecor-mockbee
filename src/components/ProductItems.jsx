@@ -87,7 +87,7 @@ export function ProductItems({
                 }
                 setIsWishlist((p) => !p);
               } catch (err) {
-                setError(err.response.data);
+                setError(err.response.data.message);
               }
             }
           }}

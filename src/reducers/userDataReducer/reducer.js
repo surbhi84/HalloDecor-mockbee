@@ -25,21 +25,19 @@ export const useUserDataReducer = () => {
       case "LOGOUT":
         return userInitial;
       case "ADDWISHLIST": {
-        let wish = [...state.user.wishlist];
-        if (wish.some((i) => i.id === payload.id)) return state;
-        state.user.wishlist = [...wish, payload];
-        return { ...state };
+        return {
+          ...state,
+          user: { ...state.user, wishlist: [...state.user.wishlist, payload] },
+        };
       }
       case "REMOVEWISHLIST": {
         const newWishlist = state.user.wishlist.filter(
           (item) => payload !== item.id
         );
-        state.user.wishlist = newWishlist;
-        return { ...state };
+        return { ...state, user: { ...state.user, wishlist: [newWishlist] } };
       }
       case "SETWISHLIST": {
-        state.user.wishlist = payload;
-        return { ...state };
+        return { ...state, user: { ...state.user, wishlist: payload } };
       }
       default:
         return state;

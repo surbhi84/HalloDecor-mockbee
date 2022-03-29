@@ -121,6 +121,7 @@ export function ProductList() {
             }) => {
               return (
                 <ProductItems
+                  key={id}
                   id={id}
                   category={category}
                   productImg={productImg}
