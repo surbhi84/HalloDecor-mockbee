@@ -13,17 +13,6 @@ export function Wishlist() {
     userDataDispatch,
   } = useUserData();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const userWishlist = await getWishlist(encodedToken);
-  //     console.log(userWishlist);
-  //     userDataDispatch({
-  //       type: "SETWISHLIST",
-  //       payload: userWishlist.data.products,
-  //     });
-  //   })();
-  // }, []);
-
   return (
     <>
       {error !== "" && <Error err={error} setError={setError} />}

@@ -26,7 +26,7 @@ export const useUserDataReducer = () => {
         return userInitial;
       case "ADDWISHLIST": {
         let wish = [...state.user.wishlist];
-        if (wish.some((i) => i.id === payload.id)) return state;
+        // if (wish.some((i) => i.id === payload.id)) return state;
         state.user.wishlist = [...wish, payload];
         return { ...state };
       }
