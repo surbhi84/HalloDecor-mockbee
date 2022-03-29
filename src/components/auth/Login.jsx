@@ -94,6 +94,7 @@ export function Login() {
               try {
                 let response = await postUserLogin(loginInfo);
                 setError("");
+                console.log(response.data.encodedToken);
                 userDataDispatch({ type: "LOGIN", payload: response.data });
                 navigate("/products");
               } catch (err) {

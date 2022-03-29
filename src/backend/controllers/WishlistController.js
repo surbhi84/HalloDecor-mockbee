@@ -15,7 +15,7 @@ import { formatDate, requiresAuth } from "../utils/authUtils";
 export const getWishlistItemsHandler = function (schema, request) {
   const userId = requiresAuth.call(this, request);
   if (!userId) {
-    new Response(
+    return new Response(
       404,
       {},
       {
@@ -37,7 +37,7 @@ export const addItemToWishlistHandler = function (schema, request) {
   const userId = requiresAuth.call(this, request);
   try {
     if (!userId) {
-      new Response(
+      return new Response(
         404,
         {},
         {
@@ -47,6 +47,7 @@ export const addItemToWishlistHandler = function (schema, request) {
     }
     const userWishlist = schema.users.findBy({ _id: userId }).wishlist;
     const { product } = JSON.parse(request.requestBody);
+
     userWishlist.push({
       ...product,
       createdAt: formatDate(),
@@ -75,7 +76,7 @@ export const removeItemFromWishlistHandler = function (schema, request) {
   const userId = requiresAuth.call(this, request);
   try {
     if (!userId) {
-      new Response(
+      return new Response(
         404,
         {},
         {
@@ -85,7 +86,9 @@ export const removeItemFromWishlistHandler = function (schema, request) {
     }
     let userWishlist = schema.users.findBy({ _id: userId }).wishlist;
     const productId = request.params.productId;
-    userWishlist = userWishlist.filter((item) => item._id !== productId);
+    console.log(productId, "inside contorller");
+    userWishlist = userWishlist.filter((item) => item.id !== productId);
+    console.log(userWishlist);
     this.db.users.update({ _id: userId }, { wishlist: userWishlist });
     return new Response(200, {}, { wishlist: userWishlist });
   } catch (error) {
