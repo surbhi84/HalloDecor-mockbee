@@ -123,7 +123,11 @@ export function ProductItems({
           {category !== "" ? category : ""}
         </span>
 
-        <button className={products["like-btn"]} onClick={likeDislikeHandler}>
+        <button
+          className={products["like-btn"]}
+          onClick={likeDislikeHandler}
+          disabled={inStock === false}
+        >
           {isWishlist ? (
             <img src="/assets/icons/redHeart.svg" alt="heart icon" />
           ) : (
@@ -141,7 +145,11 @@ export function ProductItems({
           Rating {rating}
         </div>
 
-        <button className="cart-btn gap-sm" onClick={addToCartHandler}>
+        <button
+          className="cart-btn gap-sm"
+          onClick={addToCartHandler}
+          disabled={inStock === false}
+        >
           Add to cart
           <img src="/assets/icons/bluecart.svg" alt="cart icon" />
         </button>

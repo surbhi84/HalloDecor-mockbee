@@ -59,6 +59,7 @@ export function Wishlist() {
       <div className="parting flex-row">
         <h2 className="text-link">My Wishlist</h2>
       </div>
+
       <div className="flex-center gap-xl mg-m mg-btm flex-wrap">
         {wishlist.length === 0 ? (
           <h1> Your Wishlist is Empty</h1>
@@ -74,6 +75,7 @@ export function Wishlist() {
                   alt={wishItem.productAlt}
                   className="responsive-img"
                 />
+
                 <div
                   className={`${products["product-details"]} flex-col flex-center`}
                 >
@@ -84,6 +86,7 @@ export function Wishlist() {
                     <s>₹{wishItem.price}</s>
                   </div>
                 </div>
+
                 <button
                   className="cart-btn gap-sm"
                   onClick={() => {
@@ -92,6 +95,7 @@ export function Wishlist() {
                 >
                   Move to cart
                 </button>
+
                 <button
                   className="cart-btn gap-sm"
                   onClick={() => {

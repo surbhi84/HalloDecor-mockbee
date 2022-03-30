@@ -1,11 +1,9 @@
 import { cart, products } from "..";
-import { v4 as uuid } from "uuid";
 import { useEffect, useState } from "react";
-import { deleteCart, getCart, postWishlist } from "api";
+import { deleteCart, getCart, postWishlist, updateCart } from "api";
 import { useUserData } from "hooks";
 
 export function Cart() {
-  const [cartList, setCartList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -15,11 +13,13 @@ export function Cart() {
     isAuth,
   } = useUserData();
 
+  const cartList = user.cart;
+
   useEffect(() => {
     (async function () {
       try {
         let cart = await getCart(encodedToken);
-        setCartList(cart.data.cart);
+        userDataDispatch({ type: "SETCART", payload: cart.data.cart });
       } catch (err) {
         setError(err);
       }
@@ -30,6 +30,9 @@ export function Cart() {
     let timer = setTimeout(() => {
       setIsLoading(false);
     }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
   }, []);
 
   const totalItem = cartList.reduce((a, i) => a + i.quantity, 0);
@@ -52,6 +55,22 @@ export function Cart() {
       userDataDispatch({ type: "ADDWISHLIST", payload: item });
       await deleteCart(item.id, encodedToken);
       userDataDispatch({ type: "REMOVECART", payload: item.id });
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  }
+
+  async function incQuantity(item) {
+    try {
+      await updateCart(item.id, encodedToken, "increment");
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  }
+
+  async function decQuantity(item) {
+    try {
+      await updateCart(item.id, encodedToken, "decrement");
     } catch (err) {
       setError(err.response.data.message);
     }
@@ -94,11 +113,21 @@ export function Cart() {
                       <div>{item.discount}% OFF</div>
                       <div>
                         Quantity:
-                        <button className={`${cart["short-btn"]} mg-xs`}>
+                        <button
+                          className={`${cart["short-btn"]} mg-xs`}
+                          onClick={() => {
+                            decQuantity(item);
+                          }}
+                        >
                           -
                         </button>
                         <span>{item.quantity}</span>
-                        <button className={`${cart["short-btn"]} mg-xs`}>
+                        <button
+                          className={`${cart["short-btn"]} mg-xs`}
+                          onClick={() => {
+                            incQuantity(item);
+                          }}
+                        >
                           +
                         </button>
                       </div>

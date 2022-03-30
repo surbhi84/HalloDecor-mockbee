@@ -71,7 +71,6 @@ export function deleteWishlist(id, encodedToken) {
 }
 
 // CART API'S
-
 export function postCart(
   {
     id,
@@ -121,4 +120,12 @@ export function deleteCart(id, encodedToken) {
   return axios.delete(BASEURL + "/api/user/cart/" + id, {
     headers: { authorization: encodedToken },
   });
+}
+
+export function updateCart(id, encodedToken, type) {
+  return axios.post(
+    BASEURL + "/api/user/cart/" + id,
+    { action: { type: type } },
+    { headers: { authorization: encodedToken } }
+  );
 }

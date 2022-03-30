@@ -15,11 +15,9 @@ export function Login() {
   const { userDataDispatch } = useUserData();
 
   async function onClickLoginHandler() {
-    console.log("bread");
     try {
       let response = await postUserLogin(loginInfo);
       setError("");
-      console.log(response.data.encodedToken);
       userDataDispatch({ type: "LOGIN", payload: response.data });
       navigate("/products");
     } catch (err) {
