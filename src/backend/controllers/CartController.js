@@ -46,14 +46,32 @@ export const addItemToCartHandler = function (schema, request) {
     }
     const userCart = schema.users.findBy({ _id: userId }).cart;
     const { product } = JSON.parse(request.requestBody);
-    userCart.push({
-      ...product,
-      createdAt: formatDate(),
-      updatedAt: formatDate(),
-      qty: 1,
-    });
+    const { id: prodId } = product;
+    const matchedProduct = schema.products.findBy({ id: prodId });
+
+    if (!matchedProduct)
+      return new Response(
+        400,
+        {},
+        {
+          message: "No Such Product found in database",
+        }
+      );
+    const cartProductIndex = userCart.findIndex(({ id }) => id === prodId);
+    if (cartProductIndex === -1) {
+      userCart.push({
+        ...product,
+        createdAt: formatDate(),
+        updatedAt: formatDate(),
+        qty: 1,
+      });
+      this.db.users.update({ _id: userId }, { cart: userCart });
+      return new Response(201, {}, { cart: userCart });
+    }
+    userCart[cartProductIndex].qty = userCart[cartProductIndex].qty + 1;
+    userCart[cartProductIndex].updatedAt = formatDate();
     this.db.users.update({ _id: userId }, { cart: userCart });
-    return new Response(201, {}, { cart: userCart });
+    return new Response(201, {}, { cart: this.db.products });
   } catch (error) {
     return new Response(
       500,

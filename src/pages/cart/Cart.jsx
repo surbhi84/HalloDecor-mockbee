@@ -1,40 +1,44 @@
 import { cart, products } from "..";
 import { v4 as uuid } from "uuid";
+import { useEffect } from "react/cjs/react.production.min";
 
 export function Cart() {
   // temporary setup will edit when working on features
-  const cartList = [
-    {
-      // 5
-      id: uuid(),
-      category: "",
-      brand: "Nature jewels",
-      product: "Wooden Handmade toy",
-      productImg: "/assets/images/toy.webp",
-      productAlt: "wooden toy",
-      discPrice: 895,
-      price: 1489,
-      discount: 40,
-      inStock: true,
-      rating: 4.5,
-      quantity: 0,
-    },
-    {
-      // 5
-      id: uuid(),
-      category: "",
-      brand: "Nature jewels",
-      product: "Wooden Handmade toy",
-      productImg: "/assets/images/toy.webp",
-      productAlt: "wooden toy",
-      discPrice: 895,
-      price: 1489,
-      discount: 40,
-      inStock: true,
-      rating: 4.5,
-      quantity: 0,
-    },
-  ];
+  // const cartList = [
+  //   {
+  //     // 5
+  //     id: uuid(),
+  //     category: "",
+  //     brand: "Nature jewels",
+  //     product: "Wooden Handmade toy",
+  //     productImg: "/assets/images/toy.webp",
+  //     productAlt: "wooden toy",
+  //     discPrice: 895,
+  //     price: 1489,
+  //     discount: 40,
+  //     inStock: true,
+  //     rating: 4.5,
+  //     quantity: 0,
+  //   },
+  //   {
+  //     // 5
+  //     id: uuid(),
+  //     category: "",
+  //     brand: "Nature jewels",
+  //     product: "Wooden Handmade toy",
+  //     productImg: "/assets/images/toy.webp",
+  //     productAlt: "wooden toy",
+  //     discPrice: 895,
+  //     price: 1489,
+  //     discount: 40,
+  //     inStock: true,
+  //     rating: 4.5,
+  //     quantity: 0,
+  //   },
+  // ];
+
+  useEffect(() => {});
+
   return (
     <>
       <div className="parting flex-row">

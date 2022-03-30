@@ -68,3 +68,44 @@ export function deleteWishlist(id, encodedToken) {
     headers: { authorization: encodedToken },
   });
 }
+
+// CART API'S
+
+export function postCart(
+  {
+    id,
+    category,
+    productImg,
+    productAlt,
+    brand,
+    product,
+    discPrice,
+    price,
+    discount,
+    inStock,
+    rating,
+    quantity,
+  },
+  encodedToken
+) {
+  return axios.post(
+    BASEURL + "/api/user/cart",
+    {
+      product: {
+        id,
+        category,
+        productImg,
+        productAlt,
+        brand,
+        product,
+        discPrice,
+        price,
+        discount,
+        inStock,
+        rating,
+        quantity,
+      },
+    },
+    { headers: { authorization: encodedToken } }
+  );
+}

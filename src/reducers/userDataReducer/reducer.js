@@ -39,6 +39,12 @@ export const useUserDataReducer = () => {
       case "SETWISHLIST": {
         return { ...state, user: { ...state.user, wishlist: payload } };
       }
+      case "ADDTOCART": {
+        return {
+          ...state,
+          user: { ...state.user, cart: [...state.user.cart, payload] },
+        };
+      }
       default:
         return state;
     }
