@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// THE BASEURL IS FOR FUTURE PURPOSES,IN CASE THE API LINK CHANGES
 const BASEURL = "";
 
 // USER RELATED API'S
@@ -108,4 +109,16 @@ export function postCart(
     },
     { headers: { authorization: encodedToken } }
   );
+}
+
+export function getCart(encodedToken) {
+  return axios.get(BASEURL + "/api/user/cart", {
+    headers: { authorization: encodedToken },
+  });
+}
+
+export function deleteCart(id, encodedToken) {
+  return axios.delete(BASEURL + "/api/user/cart" + id, {
+    headers: { authorization: encodedToken },
+  });
 }

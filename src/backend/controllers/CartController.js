@@ -63,12 +63,13 @@ export const addItemToCartHandler = function (schema, request) {
         ...product,
         createdAt: formatDate(),
         updatedAt: formatDate(),
-        qty: 1,
+        quantity: 1,
       });
       this.db.users.update({ _id: userId }, { cart: userCart });
       return new Response(201, {}, { cart: userCart });
     }
-    userCart[cartProductIndex].qty = userCart[cartProductIndex].qty + 1;
+    userCart[cartProductIndex].quantity =
+      userCart[cartProductIndex].quantity + 1;
     userCart[cartProductIndex].updatedAt = formatDate();
     this.db.users.update({ _id: userId }, { cart: userCart });
     return new Response(201, {}, { cart: this.db.products });
@@ -140,14 +141,14 @@ export const updateCartItemHandler = function (schema, request) {
     if (action.type === "increment") {
       userCart.forEach((product) => {
         if (product._id === productId) {
-          product.qty += 1;
+          product.quantity += 1;
           product.updatedAt = formatDate();
         }
       });
     } else if (action.type === "decrement") {
       userCart.forEach((product) => {
         if (product._id === productId) {
-          product.qty -= 1;
+          product.quantity -= 1;
           product.updatedAt = formatDate();
         }
       });

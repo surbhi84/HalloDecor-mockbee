@@ -78,21 +78,17 @@ export function ProductItems({
       rating,
       quantity,
     };
-    // try {
-    if (!isAuth()) {
-      navigate("/login");
-      return;
+    try {
+      if (!isAuth()) {
+        navigate("/login");
+        return;
+      }
+      await postCart(productItem, userData.encodedToken);
+      userDataDispatch({ type: "ADDTOCART", payload: productItem });
+      setError("");
+    } catch (err) {
+      setError(err.response.data.message);
     }
-    console.log("pehla");
-    await postCart(productItem, userData.encodedToken);
-    console.log("post");
-    userDataDispatch({ type: "ADDTOCART", payload: productItem });
-    console.log("dispatch");
-    setError("");
-    console.log("breadbesan2");
-    // } catch (err) {
-    // setError(err.response.data.message);
-    // }
   }
 
   return (

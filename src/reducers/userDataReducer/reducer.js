@@ -31,9 +31,7 @@ export const useUserDataReducer = () => {
         };
       }
       case "REMOVEWISHLIST": {
-        const newWishlist = state.user.wishlist.filter(
-          (item) => payload !== item.id
-        );
+        const newWishlist = state.user.wishlist.filter((i) => i.id !== payload);
         return { ...state, user: { ...state.user, wishlist: newWishlist } };
       }
       case "SETWISHLIST": {
@@ -45,6 +43,17 @@ export const useUserDataReducer = () => {
           user: { ...state.user, cart: [...state.user.cart, payload] },
         };
       }
+      case "REMOVECART": {
+        const newCart = state.user.cart.filter((i) => i.id !== payload);
+        return {
+          ...state,
+          user: { ...state.user, cart: newCart },
+        };
+      }
+      case "SETCART": {
+        return { ...state, user: { ...state.user, cart: payload } };
+      }
+
       default:
         return state;
     }
