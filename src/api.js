@@ -118,7 +118,7 @@ export function getCart(encodedToken) {
 }
 
 export function deleteCart(id, encodedToken) {
-  return axios.delete(BASEURL + "/api/user/cart" + id, {
+  return axios.delete(BASEURL + "/api/user/cart/" + id, {
     headers: { authorization: encodedToken },
   });
 }

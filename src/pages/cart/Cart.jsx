@@ -1,7 +1,7 @@
 import { cart, products } from "..";
 import { v4 as uuid } from "uuid";
 import { useEffect, useState } from "react";
-import { getCart } from "api";
+import { deleteCart, getCart } from "api";
 import { useUserData } from "hooks";
 
 export function Cart() {
@@ -10,7 +10,7 @@ export function Cart() {
   const [error, setError] = useState("");
 
   const {
-    userData: { encodedToken },
+    userData: { user, encodedToken },
     userDataDispatch,
     isAuth,
   } = useUserData();
@@ -24,7 +24,7 @@ export function Cart() {
         setError(err);
       }
     })();
-  }, []);
+  }, [cartList]);
 
   useEffect(() => {
     let timer = setTimeout(() => {
@@ -36,6 +36,16 @@ export function Cart() {
   const totalAmount = cartList.reduce((a, i) => a + i.discPrice, 0);
   const totalDisc = cartList.reduce((a, i) => (a += i.price - i.discPrice), 0);
 
+  async function removeCartHandler(id) {
+    // try {
+    await deleteCart(id, encodedToken);
+    userDataDispatch({ type: "REMOVECART", payload: id });
+    setError("");
+    // } catch (err) {
+    //   setError(err.response.data.message);
+    // }
+  }
+
   return (
     <>
       {isLoading ? (
@@ -43,6 +53,7 @@ export function Cart() {
         <h2>...loading</h2>
       ) : (
         <>
+          {error !== "" && <Error err={error} setError={setError} />}
           <div className="parting flex-row">
             <h2 className="text-link">My Cart</h2>
           </div>
@@ -80,7 +91,12 @@ export function Cart() {
                           +
                         </button>
                       </div>
-                      <button className="cart-btn full-width">
+                      <button
+                        className="cart-btn full-width"
+                        onClick={() => {
+                          removeCartHandler(item.id);
+                        }}
+                      >
                         Remove from cart
                       </button>
                       <button className="cart-btn full-width">
@@ -94,33 +110,37 @@ export function Cart() {
             </div>
 
             {/* amount details div*/}
-            <div className={`${cart["amt-detail"]}`}>
-              <h3>Amount Details</h3>
-              <hr className="break" />
+            {totalItem === 0 ? (
+              <h1>Your cart is empty</h1>
+            ) : (
+              <div className={`${cart["amt-detail"]}`}>
+                <h3>Amount Details</h3>
+                <hr className="break" />
 
-              <div>
-                <div className="flex-row spc-btwn">
-                  <p>Amount( {totalItem} count)</p>
-                  <p>₹{totalAmount}</p>
+                <div>
+                  <div className="flex-row spc-btwn">
+                    <p>Amount( {totalItem} count)</p>
+                    <p>₹{totalAmount}</p>
+                  </div>
+                  <div className="flex-row spc-btwn">
+                    <p>Discount</p>
+                    <p>₹{totalDisc}</p>
+                  </div>
+                  <div className="flex-row spc-btwn">
+                    <p>Delivery charges</p>
+                    <p>₹{199}</p>
+                  </div>
+                  <hr className="break" />
+                  <div className="flex-row spc-btwn">
+                    <strong></strong>
+                    <strong>₹{totalAmount + 199}</strong>
+                  </div>
+                  <hr className="break" />
+                  You will save ₹{totalDisc} on this order
                 </div>
-                <div className="flex-row spc-btwn">
-                  <p>Discount</p>
-                  <p>₹{totalDisc}</p>
-                </div>
-                <div className="flex-row spc-btwn">
-                  <p>Delivery charges</p>
-                  <p>₹199</p>
-                </div>
-                <hr className="break" />
-                <div className="flex-row spc-btwn">
-                  <strong></strong>
-                  <strong>₹{totalAmount + 199}</strong>
-                </div>
-                <hr className="break" />
-                You will save ₹{totalDisc} on this order
+                <button className="full-width cart-btn">Place Order</button>
               </div>
-              <button className="full-width cart-btn">Place Order</button>
-            </div>
+            )}
 
             {/*  end of amount details */}
           </div>
