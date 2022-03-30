@@ -1,7 +1,7 @@
 import { cart, products } from "..";
 import { v4 as uuid } from "uuid";
 import { useEffect, useState } from "react";
-import { deleteCart, getCart } from "api";
+import { deleteCart, getCart, postWishlist } from "api";
 import { useUserData } from "hooks";
 
 export function Cart() {
@@ -37,13 +37,24 @@ export function Cart() {
   const totalDisc = cartList.reduce((a, i) => (a += i.price - i.discPrice), 0);
 
   async function removeCartHandler(id) {
-    // try {
-    await deleteCart(id, encodedToken);
-    userDataDispatch({ type: "REMOVECART", payload: id });
-    setError("");
-    // } catch (err) {
-    //   setError(err.response.data.message);
-    // }
+    try {
+      await deleteCart(id, encodedToken);
+      userDataDispatch({ type: "REMOVECART", payload: id });
+      setError("");
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  }
+
+  async function cartToWishlistHandler(item) {
+    try {
+      await postWishlist(item, encodedToken);
+      userDataDispatch({ type: "ADDWISHLIST", payload: item });
+      await deleteCart(item.id, encodedToken);
+      userDataDispatch({ type: "REMOVECART", payload: item.id });
+    } catch (err) {
+      setError(err.response.data.message);
+    }
   }
 
   return (
@@ -99,7 +110,12 @@ export function Cart() {
                       >
                         Remove from cart
                       </button>
-                      <button className="cart-btn full-width">
+                      <button
+                        className="cart-btn full-width"
+                        onClick={() => {
+                          cartToWishlistHandler(item);
+                        }}
+                      >
                         Move to wishlist
                       </button>
                     </div>
