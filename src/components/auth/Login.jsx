@@ -1,8 +1,35 @@
 import auth from "./auth.module.css";
-import "../../css/common.css";
-import { Link } from "react-router-dom";
+import "css/common.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useReducer, useState } from "react";
+import { postUserLogin } from "../../api";
+import { useUser } from "../../hooks/context/userDataContext";
+import { Error } from "components";
 
 export function Login() {
+  const [isPwdVisible, setIsPwdVisible] = useState(false);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const { userDataDispatch } = useUser();
+
+  const [loginInfo, loginInfoDispatch] = useReducer(login, {
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+
+  function login(state, { type, payload }) {
+    switch (type) {
+      case "EMAIL":
+        return { ...state, email: payload };
+      case "PWD":
+        return { ...state, password: payload };
+      case "REMEMBER":
+        return { ...state, rememberMe: !state.rememberMe };
+    }
+  }
+
   return (
     <>
       <main className="flex-center">
@@ -16,6 +43,9 @@ export function Login() {
             <input
               type="text"
               className={`full-width input-line ${auth["input-line"]} `}
+              onChange={(e) => {
+                loginInfoDispatch({ type: "EMAIL", payload: e.target.value });
+              }}
             />
           </label>
 
@@ -23,10 +53,18 @@ export function Login() {
             Enter password
             <div className="flex-row">
               <input
-                type="password"
+                type={isPwdVisible ? "text" : "password"}
                 className={`full-width input-line ${auth["input-line"]}  `}
+                onChange={(e) => {
+                  loginInfoDispatch({ type: "PWD", payload: e.target.value });
+                }}
               />
-              <span className="pwd-eye">
+              <span
+                className="pwd-eye"
+                onClick={() => {
+                  setIsPwdVisible((p) => !p);
+                }}
+              >
                 <i className="fas fa-eye-slash"></i>
               </span>
             </div>
@@ -34,7 +72,13 @@ export function Login() {
 
           <div className={`flex-row spc-btwn full-width`}>
             <label>
-              <input type="checkbox" /> Remember me
+              <input
+                type="checkbox"
+                onChange={() => {
+                  loginInfoDispatch({ type: "REMEMBER" });
+                }}
+              />{" "}
+              Remember me
             </label>
 
             <a href="#" className="footer-link">
@@ -42,7 +86,21 @@ export function Login() {
             </a>
           </div>
 
-          <button className="cart-btn full-width">Login</button>
+          <button
+            className="cart-btn full-width"
+            onClick={async () => {
+              try {
+                let response = await postUserLogin(loginInfo);
+                setError("");
+                userDataDispatch({ type: "LOGIN", payload: response.data });
+                navigate("/products");
+              } catch (err) {
+                setError(err.response.data.message);
+              }
+            }}
+          >
+            Login
+          </button>
           <div>or</div>
 
           <Link
@@ -51,6 +109,7 @@ export function Login() {
           >
             Create New Account
           </Link>
+          {error !== "" && <Error err={error} setError={setError} />}
         </div>
       </main>
     </>

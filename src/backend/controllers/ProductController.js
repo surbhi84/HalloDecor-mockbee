@@ -29,7 +29,7 @@ export const getProductHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        message: error.message,
       }
     );
   }

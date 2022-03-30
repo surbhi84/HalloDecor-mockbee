@@ -18,7 +18,7 @@ export const getAllCategoriesHandler = function () {
       500,
       {},
       {
-        error,
+        message: error.message,
       }
     );
   }
@@ -39,7 +39,7 @@ export const getCategoryHandler = function (schema, request) {
       500,
       {},
       {
-        error,
+        message: error.message,
       }
     );
   }
