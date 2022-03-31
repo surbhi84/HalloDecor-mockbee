@@ -8,7 +8,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useUserData } from "hooks/context/userDataContext";
 import { useProducts } from "hooks/context/productsContext";
 import { getProducts } from "api";
@@ -27,9 +27,9 @@ export const Navbar = ({ isHome }) => {
 
   async function searchInputHandler(e) {
     if (location !== "products") navigate("/products");
-    setSearchTerm(e.target.value);
     const resp = await getProducts();
     const products = resp.data.products;
+    console.log("ss");
     if (e.target.value.trim() !== "") {
       const filteredProducts = search(e.target.value.trim(), products, {
         keySelector: (obj) => [obj.brand, obj.product],
@@ -40,6 +40,16 @@ export const Navbar = ({ isHome }) => {
       setFilteredProductList(products);
     }
   }
+
+  function debounce(debounceCallback, timeOut = 300) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => debounceCallback(...args), timeOut);
+    };
+  }
+
+  const debouncedSearch = useCallback(debounce(searchInputHandler), []);
 
   return (
     <header className="home-head">
@@ -78,7 +88,10 @@ export const Navbar = ({ isHome }) => {
                 placeholder="Search"
                 className="search-bar"
                 value={searchTerm}
-                onChange={(e) => searchInputHandler(e)}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  debouncedSearch(e);
+                }}
               />
               <button className="search-btn">
                 <img
