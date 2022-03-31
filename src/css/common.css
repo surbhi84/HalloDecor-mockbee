@@ -63,6 +63,9 @@ main {
 .cart-btn:hover {
   border: 4px double var(--primary-color);
 }
+.cart-btn:disabled {
+  border: none;
+}
 
 .text-link {
   color: var(--primary-color);

@@ -3,6 +3,11 @@ import axios from "axios";
 // THE BASEURL IS FOR FUTURE PURPOSES,IN CASE THE API LINK CHANGES
 const BASEURL = "";
 
+// GET PRODUCTS
+export function getProducts() {
+  return axios.get(BASEURL + "/api/products");
+}
+
 // USER RELATED API'S
 export function postUserSignup({ firstName, lastName, email, password }) {
   return axios.post(BASEURL + "/api/auth/signup", {

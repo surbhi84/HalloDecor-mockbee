@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import { useUserDataReducer } from "../../reducers/userDataReducer/reducer";
 
-const userDataContext = createContext();
+const UserDataContext = createContext();
 
 export function UserDataProvider({ children }) {
   const [userData, userDataDispatch] = useUserDataReducer();
@@ -9,11 +9,11 @@ export function UserDataProvider({ children }) {
     userData.encodedToken !== "" && userData.encodedToken !== undefined;
   return (
     <>
-      <userDataContext.Provider value={{ userData, userDataDispatch, isAuth }}>
+      <UserDataContext.Provider value={{ userData, userDataDispatch, isAuth }}>
         {children}
-      </userDataContext.Provider>
+      </UserDataContext.Provider>
     </>
   );
 }
 
-export const useUserData = () => useContext(userDataContext);
+export const useUserData = () => useContext(UserDataContext);
