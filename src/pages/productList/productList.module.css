@@ -77,11 +77,6 @@
 .cart-btn:hover {
   border: 4px double var(--primary-color);
 }
-/* 
-.cart-btn-disabled {
-  border: 4px double pink;
-  opacity: 0.55;
-} */
 
 .card-ecom .card-badg {
   left: 5%;

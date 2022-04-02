@@ -10,7 +10,6 @@ export function ProductsProvider({ children }) {
     try {
       const products = await getProducts();
       return products.data.products;
-      //   setProductList(products.data.products);
     } catch (err) {
       //   setError(true);
       return [];
