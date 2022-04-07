@@ -2,12 +2,11 @@ import { products } from "..";
 import { Filter, Categories, Error, ProductItems } from "components";
 import { useFilter } from "reducers/filterReducer/reducer";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { useProducts } from "hooks/context/productsContext";
 
 export function ProductList() {
-  const [productList, setProductList] = useState([]);
   const [error, setError] = useState("");
-
+  const { filteredProductList } = useProducts();
   const [
     {
       outOfStock,
@@ -22,17 +21,6 @@ export function ProductList() {
     filterDispatch,
   ] = useFilter();
 
-  useEffect(() => {
-    (async function () {
-      try {
-        let products = await axios.get("/api/products");
-        setProductList(products.data.products);
-      } catch (err) {
-        setError(true);
-      }
-    })();
-  }, []);
-
   function getSortedProducts(products, sortBy) {
     if (sortBy === "PRICE_LOW_TO_HIGH") {
       return products.sort((a, b) => a.discPrice - b.discPrice);
@@ -40,6 +28,7 @@ export function ProductList() {
     if (sortBy === "PRICE_HIGH_TO_LOW") {
       return products.sort((a, b) => b.discPrice - a.discPrice);
     }
+
     return products;
   }
 
@@ -70,7 +59,7 @@ export function ProductList() {
     );
   }
 
-  const sortedProducts = getSortedProducts(productList, sortBy);
+  const sortedProducts = getSortedProducts(filteredProductList, sortBy);
 
   const filteredProducts = getFilteredProducts(sortedProducts, {
     showBestseller,
@@ -142,6 +131,7 @@ export function ProductList() {
           )}
         </div>
       </main>
+
       <div className="pagination flex-center pd-m">
         {["<", 1, 2, 3, 4, ">"].map((item) => {
           return (

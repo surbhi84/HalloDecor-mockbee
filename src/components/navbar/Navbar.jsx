@@ -1,8 +1,17 @@
 import navbar from "./navbar.module.css";
 import { Carousel } from "components";
-import { Routes, Route, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { search } from "fast-fuzzy";
+import {
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
 import { useUserData } from "hooks/context/userDataContext";
+import { useProducts } from "hooks/context/productsContext";
+import { getProducts } from "api";
 
 export const Navbar = ({ isHome }) => {
   useEffect(() => {
@@ -10,7 +19,37 @@ export const Navbar = ({ isHome }) => {
   }, []);
 
   const [isHamburgerView, setIsHamburgerView] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
   const { userData, userDataDispatch, isAuth } = useUserData();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { filteredProductList, setFilteredProductList } = useProducts();
+
+  async function searchInputHandler(e) {
+    if (location !== "products") navigate("/products");
+    const resp = await getProducts();
+    const products = resp.data.products;
+
+    if (e.target.value.trim() !== "") {
+      const filteredProducts = search(e.target.value.trim(), products, {
+        keySelector: (obj) => [obj.brand, obj.product],
+        threshold: 0.78,
+      });
+      setFilteredProductList(filteredProducts);
+    } else {
+      setFilteredProductList(products);
+    }
+  }
+
+  function debounce(debounceCallback, timeOut = 300) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => debounceCallback(...args), timeOut);
+    };
+  }
+
+  const debouncedSearch = useCallback(debounce(searchInputHandler), []);
 
   return (
     <header className="home-head">
@@ -48,6 +87,11 @@ export const Navbar = ({ isHome }) => {
                 type="search"
                 placeholder="Search"
                 className="search-bar"
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  debouncedSearch(e);
+                }}
               />
               <button className="search-btn">
                 <img
@@ -112,7 +156,6 @@ export const Navbar = ({ isHome }) => {
             </li>
           </ul>
         </div>
-        <Link to="/ts"> mockman</Link>
       </nav>
     </header>
   );

@@ -4,7 +4,9 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Gideon+Roman&family=Nunito:wght@200&display=swap");
 
-body {
+body,
+#root,
+.App {
   font-family: "Nunito", sans-serif;
   margin: unset;
   min-height: 100vh;
@@ -46,6 +48,14 @@ main {
   display: none;
 }
 
+.rating-span {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+  margin-bottom: auto;
+}
+
 /* Button design which have been used througout the application */
 .cart-btn {
   display: flex;
@@ -62,6 +72,9 @@ main {
 
 .cart-btn:hover {
   border: 4px double var(--primary-color);
+}
+.cart-btn:disabled {
+  border: none;
 }
 
 .text-link {
@@ -81,6 +94,14 @@ main {
 
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.mt-auto {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+.mb-auto {
+  margin-bottom: auto;
 }
 
 .parting {

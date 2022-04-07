@@ -17,7 +17,6 @@ export function Wishlist() {
   // useEffect(() => {
   //   (async () => {
   //     const userWishlist = await getWishlist(encodedToken);
-  //     console.log(userWishlist);
   //     userDataDispatch({
   //       type: "SETWISHLIST",
   //       payload: userWishlist.data.products,
@@ -62,7 +61,14 @@ export function Wishlist() {
 
       <div className="flex-center gap-xl mg-m mg-btm flex-wrap">
         {wishlist.length === 0 ? (
-          <h1> Your Wishlist is Empty</h1>
+          <div>
+            <img
+              src="/assets/images/wishlist.svg"
+              alt="wishlist image"
+              style={{ height: "15rem" }}
+            />
+            <h3>Ooops...Your Wishlist is empty!</h3>
+          </div>
         ) : (
           wishlist.map((wishItem) => {
             return (

@@ -4,6 +4,7 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 import { UserDataProvider } from "hooks";
+import { ProductsProvider } from "hooks/context/productsContext";
 
 // Call make Server
 makeServer();
@@ -11,9 +12,11 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <UserDataProvider>
-      <Router>
-        <App />
-      </Router>
+      <ProductsProvider>
+        <Router>
+          <App />
+        </Router>
+      </ProductsProvider>
     </UserDataProvider>
   </React.StrictMode>,
   document.getElementById("root")

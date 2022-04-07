@@ -80,7 +80,16 @@ export function Cart() {
     <>
       {isLoading ? (
         // must add a loader here
-        <h2>...loading</h2>
+        <div className="flex-center">
+          <div>
+            <img
+              src="/assets/images/loading.svg"
+              alt="empty cart image"
+              style={{ height: "15rem" }}
+            />
+            <h3 className="flex-center">Loading...</h3>
+          </div>
+        </div>
       ) : (
         <>
           {error !== "" && <Error err={error} setError={setError} />}
@@ -156,7 +165,14 @@ export function Cart() {
 
             {/* amount details div*/}
             {totalItem === 0 ? (
-              <h1>Your cart is empty</h1>
+              <div>
+                <img
+                  src="/assets/images/emptyCart.svg"
+                  alt="empty cart image"
+                  style={{ height: "15rem" }}
+                />
+                <h3>Ooops...Your cart is empty!</h3>
+              </div>
             ) : (
               <div className={`${cart["amt-detail"]}`}>
                 <h3>Amount Details</h3>
