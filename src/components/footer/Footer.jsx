@@ -63,7 +63,7 @@ export const Footer = () => {
   }
 
   return (
-    <footer>
+    <footer className="mt-auto">
       <div className={foot["footer-grid"]}>
         <div className="display-block">
           Keep in touch

@@ -156,7 +156,6 @@ export const Navbar = ({ isHome }) => {
             </li>
           </ul>
         </div>
-        <Link to="/ts"> mockman</Link>
       </nav>
     </header>
   );

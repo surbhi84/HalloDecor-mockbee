@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import { useProducts } from "hooks/context/productsContext";
 
 export function ProductList() {
-  // const [filteredProductList, setProductList] = useState([]);
   const [error, setError] = useState("");
   const { filteredProductList } = useProducts();
   const [

@@ -3,6 +3,7 @@ import { useUserData } from "hooks";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { products } from "pages";
+import { MdStar } from "react-icons/md";
 
 export function ProductItems({
   id,
@@ -137,12 +138,18 @@ export function ProductItems({
 
         <img src={productImg} alt={productAlt} className="responsive-img" />
 
-        <div className={products["product-details"]}>
-          <h4 className="marg-un">{brand}</h4>
-          <p className="marg-un">{product}</p>
-          <strong> ₹{discPrice} </strong> <s>{price}</s>
-          <span className="mg-xs">{discount}% OFF</span>
-          Rating {rating}
+        <div className={` flex-row ${products["product-details"]}`}>
+          <div>
+            <h4 className="marg-un">{brand}</h4>
+            <p className="marg-un">{product}</p>
+            <strong> ₹{discPrice} </strong> <s>{price}</s>
+            <span className="mg-xs">{discount}% OFF</span>
+          </div>
+
+          <div className="rating-span">
+            {rating}
+            <MdStar />
+          </div>
         </div>
 
         <button

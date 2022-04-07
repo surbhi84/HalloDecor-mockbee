@@ -85,7 +85,11 @@
 
 .like-btn {
   border: none;
-  background-color: transparent;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  padding: 0.2rem;
+  background-color: rgba(250, 243, 243, 0.7);
   position: absolute;
   top: 58%;
   right: 5%;
