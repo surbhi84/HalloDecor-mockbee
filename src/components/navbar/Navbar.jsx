@@ -2,7 +2,7 @@ import navbar from "./navbar.module.css";
 import { Carousel } from "components";
 import { Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useUser } from "hooks/context/userDataContext";
+import { useUserData } from "hooks/context/userDataContext";
 
 export const Navbar = ({ isHome }) => {
   useEffect(() => {
@@ -10,7 +10,7 @@ export const Navbar = ({ isHome }) => {
   }, []);
 
   const [isHamburgerView, setIsHamburgerView] = useState(true);
-  const { userData, userDataDispatch, isAuth } = useUser();
+  const { userData, userDataDispatch, isAuth } = useUserData();
 
   return (
     <header className="home-head">
@@ -112,6 +112,7 @@ export const Navbar = ({ isHome }) => {
             </li>
           </ul>
         </div>
+        <Link to="/ts"> mockman</Link>
       </nav>
     </header>
   );

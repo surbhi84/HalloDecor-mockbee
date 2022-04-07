@@ -2,34 +2,30 @@ import auth from "./auth.module.css";
 import "css/common.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useReducer, useState } from "react";
-import { postUserLogin } from "../../api";
-import { useUser } from "../../hooks/context/userDataContext";
+import { postUserLogin } from "api";
+import { useUserData } from "hooks";
 import { Error } from "components";
+import { useLogin } from "components/auth/loginReducer";
 
 export function Login() {
   const [isPwdVisible, setIsPwdVisible] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const [loginInfo, loginInfoDispatch] = useLogin();
+  const { userDataDispatch } = useUserData();
 
-  const { userDataDispatch } = useUser();
-
-  const [loginInfo, loginInfoDispatch] = useReducer(login, {
-    email: "",
-    password: "",
-    rememberMe: false,
-  });
-
-  function login(state, { type, payload }) {
-    switch (type) {
-      case "EMAIL":
-        return { ...state, email: payload };
-      case "PWD":
-        return { ...state, password: payload };
-      case "REMEMBER":
-        return { ...state, rememberMe: !state.rememberMe };
+  async function onClickLoginHandler() {
+    console.log("bread");
+    try {
+      let response = await postUserLogin(loginInfo);
+      setError("");
+      console.log(response.data.encodedToken);
+      userDataDispatch({ type: "LOGIN", payload: response.data });
+      navigate("/products");
+    } catch (err) {
+      setError(err.response.data.message);
     }
   }
-
   return (
     <>
       <main className="flex-center">
@@ -42,6 +38,7 @@ export function Login() {
             Enter your email id
             <input
               type="text"
+              value={loginInfo.email}
               className={`full-width input-line ${auth["input-line"]} `}
               onChange={(e) => {
                 loginInfoDispatch({ type: "EMAIL", payload: e.target.value });
@@ -54,6 +51,7 @@ export function Login() {
             <div className="flex-row">
               <input
                 type={isPwdVisible ? "text" : "password"}
+                value={loginInfo.password}
                 className={`full-width input-line ${auth["input-line"]}  `}
                 onChange={(e) => {
                   loginInfoDispatch({ type: "PWD", payload: e.target.value });
@@ -86,19 +84,7 @@ export function Login() {
             </a>
           </div>
 
-          <button
-            className="cart-btn full-width"
-            onClick={async () => {
-              try {
-                let response = await postUserLogin(loginInfo);
-                setError("");
-                userDataDispatch({ type: "LOGIN", payload: response.data });
-                navigate("/products");
-              } catch (err) {
-                setError(err.response.data.message);
-              }
-            }}
-          >
+          <button className="cart-btn full-width" onClick={onClickLoginHandler}>
             Login
           </button>
           <div>or</div>

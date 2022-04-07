@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import { Home, Profile, ProductList, Wishlist, Cart } from "pages";
 import { Navbar, Footer, Login, Signup, ProtectedRoutes } from "components";
 import Mockman from "mockman-js";
@@ -27,7 +27,17 @@ function App() {
         </Route>
 
         {/*the below route is for testing purposes */}
-        <Route path="/ts" element={<Mockman />} />
+        <Route
+          path="/ts"
+          element={
+            <>
+              <Link to="/wishlist">wslt</Link> <Link to="/cart">cart</Link>{" "}
+              <Link to="/login">login</Link>{" "}
+              <Link to="/products">products</Link>
+              <Mockman />
+            </>
+          }
+        />
       </Routes>
       <Footer />
     </div>

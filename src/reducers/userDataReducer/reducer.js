@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 
-export const useUserData = () => {
+export const useUserDataReducer = () => {
   const userInitial = {
     user: {
       _id: "",
@@ -24,6 +24,23 @@ export const useUserData = () => {
         return payload;
       case "LOGOUT":
         return userInitial;
+      case "ADDWISHLIST": {
+        return {
+          ...state,
+          user: { ...state.user, wishlist: [...state.user.wishlist, payload] },
+        };
+      }
+      case "REMOVEWISHLIST": {
+        const newWishlist = state.user.wishlist.filter(
+          (item) => payload !== item.id
+        );
+        return { ...state, user: { ...state.user, wishlist: newWishlist } };
+      }
+      case "SETWISHLIST": {
+        return { ...state, user: { ...state.user, wishlist: payload } };
+      }
+      default:
+        return state;
     }
   }
   return [userData, userDataDispatch];

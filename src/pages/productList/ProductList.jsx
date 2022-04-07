@@ -1,13 +1,12 @@
 import { products } from "..";
-import { Filter, Categories, Error } from "components";
+import { Filter, Categories, Error, ProductItems } from "components";
 import { useFilter } from "reducers/filterReducer/reducer";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 export function ProductList() {
   const [productList, setProductList] = useState([]);
-  const [error, setError] = useState(false);
-  const [hover, setHover] = useState([false, ""]);
+  const [error, setError] = useState("");
 
   const [
     {
@@ -35,7 +34,6 @@ export function ProductList() {
   }, []);
 
   function getSortedProducts(products, sortBy) {
-    console.log(sortBy, "i am sorting data");
     if (sortBy === "PRICE_LOW_TO_HIGH") {
       return products.sort((a, b) => a.discPrice - b.discPrice);
     }
@@ -86,7 +84,7 @@ export function ProductList() {
 
   return (
     <>
-      {error && <Error err={"Products can't be loaded"} />}
+      {error !== "" && <Error err={error} setError={setError} />}
 
       <div className="parting flex-row">
         <Categories nav={"nav"} />
@@ -121,63 +119,30 @@ export function ProductList() {
               rating,
             }) => {
               return (
-                <div
-                  className={products["outer-card-div"]}
-                  onMouseEnter={() => setHover([true, id])}
-                  onMouseLeave={() => setHover([false, id])}
-                >
-                  {!inStock && (
-                    <p
-                      className={
-                        hover[0] === true && hover[1] === id
-                          ? `${products["outStock"]} ${products["visible"]}`
-                          : products["outStock"]
-                      }
-                    >
-                      Out Of Stock
-                    </p>
-                  )}
-                  <div
-                    className={
-                      inStock
-                        ? products["card-ecom"]
-                        : `${products["card-ecom"]} ${products["card-out-of-stock"]}`
-                    }
-                    key={id}
-                  >
-                    <span className={`card-badge ${products["card-badg"]}`}>
-                      {category !== "" ? category : ""}
-                    </span>
-                    <button className={products["like-btn"]}>
-                      <img src="/assets/icons/redHeart.svg" alt="heart icon" />
-                    </button>
-                    <img
-                      src={productImg}
-                      alt={productAlt}
-                      className="responsive-img"
-                    />
-                    <div className={products["product-details"]}>
-                      <h4 className="marg-un">{brand}</h4>
-                      <p className="marg-un">{product}</p>
-                      <strong> ₹{discPrice} </strong> <s>{price}</s>
-                      <span className="mg-xs">{discount}% OFF</span>
-                      Rating {rating}
-                    </div>
-                    <button className="cart-btn gap-sm">
-                      Add to cart
-                      <img src="/assets/icons/bluecart.svg" alt="cart icon" />
-                    </button>
-                  </div>
-                </div>
+                <ProductItems
+                  key={id}
+                  id={id}
+                  category={category}
+                  productImg={productImg}
+                  productAlt={productAlt}
+                  brand={brand}
+                  product={product}
+                  discPrice={discPrice}
+                  price={price}
+                  discount={discount}
+                  inStock={inStock}
+                  rating={rating}
+                  setError={setError}
+                />
               );
             }
           )}
         </div>
       </main>
-      <div class="pagination flex-center pd-m">
+      <div className="pagination flex-center pd-m">
         {["<", 1, 2, 3, 4, ">"].map((item) => {
           return (
-            <a href="#" class="footer-link pd-xs">
+            <a href="#" className="footer-link pd-xs" key={item}>
               {item}
             </a>
           );

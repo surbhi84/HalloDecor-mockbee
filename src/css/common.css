@@ -79,6 +79,10 @@ main {
   width: 100%;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .parting {
   justify-content: space-evenly;
   padding: var(--spacing-l);
