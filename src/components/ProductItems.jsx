@@ -1,4 +1,4 @@
-import { deleteWishlist, postWishlist } from "api";
+import { deleteWishlist, postWishlist, postCart } from "api";
 import { useUserData } from "hooks";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -16,6 +16,8 @@ export function ProductItems({
   discount,
   inStock,
   rating,
+  quantity,
+  error,
   setError,
 }) {
   const [hover, setHover] = useState([false, ""]);
@@ -25,7 +27,7 @@ export function ProductItems({
     !isAuth() ? false : userData.user.wishlist.some((i) => i.id === id)
   );
 
-  async function likeDislikeHandler(id) {
+  async function likeDislikeHandler() {
     if (!isAuth()) navigate("/login");
     else {
       const productItem = {
@@ -61,6 +63,34 @@ export function ProductItems({
     }
   }
 
+  async function addToCartHandler() {
+    const productItem = {
+      id,
+      category,
+      productImg,
+      productAlt,
+      brand,
+      product,
+      discPrice,
+      price,
+      discount,
+      inStock,
+      rating,
+      quantity,
+    };
+    try {
+      if (!isAuth()) {
+        navigate("/login");
+        return;
+      }
+      await postCart(productItem, userData.encodedToken);
+      userDataDispatch({ type: "ADDTOCART", payload: productItem });
+      setError("");
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  }
+
   return (
     <div
       key={id}
@@ -79,6 +109,8 @@ export function ProductItems({
           Out Of Stock
         </p>
       )}
+
+      {error !== "" && <Error err={error} setError={setError} />}
       <div
         className={
           inStock
@@ -93,9 +125,8 @@ export function ProductItems({
 
         <button
           className={products["like-btn"]}
-          onClick={() => {
-            likeDislikeHandler(id);
-          }}
+          onClick={likeDislikeHandler}
+          disabled={inStock === false}
         >
           {isWishlist ? (
             <img src="/assets/icons/redHeart.svg" alt="heart icon" />
@@ -114,7 +145,11 @@ export function ProductItems({
           Rating {rating}
         </div>
 
-        <button className="cart-btn gap-sm">
+        <button
+          className="cart-btn gap-sm"
+          onClick={addToCartHandler}
+          disabled={inStock === false}
+        >
           Add to cart
           <img src="/assets/icons/bluecart.svg" alt="cart icon" />
         </button>

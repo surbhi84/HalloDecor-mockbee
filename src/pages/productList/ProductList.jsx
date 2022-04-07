@@ -117,6 +117,7 @@ export function ProductList() {
               discount,
               inStock,
               rating,
+              quantity,
             }) => {
               return (
                 <ProductItems
@@ -132,7 +133,9 @@ export function ProductList() {
                   discount={discount}
                   inStock={inStock}
                   rating={rating}
+                  quantity={quantity}
                   setError={setError}
+                  error={error}
                 />
               );
             }

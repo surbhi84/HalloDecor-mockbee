@@ -3,8 +3,8 @@ import auth from "./auth.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { postUserSignup } from "api.js";
 import { Error } from "../Error";
-import { v4 as uuid } from "uuid";
 import { useSignup } from "./signupReducer";
+import { users } from "backend/db/users";
 
 export function Signup() {
   const [isPwdVisible, setIsPwdVisible] = useState(false);
@@ -15,7 +15,6 @@ export function Signup() {
 
   async function onClickSignupHandler() {
     try {
-      console.log("tryong");
       await postUserSignup(signupInfo);
       setError("");
       navigate("/products");
@@ -99,6 +98,7 @@ export function Signup() {
             <label>
               <input
                 type="checkbox"
+                defaultChecked={signupInfo.tAC}
                 onChange={(e) => {
                   signupDispatch({ type: "TAC" });
                 }}
@@ -109,7 +109,9 @@ export function Signup() {
           <button
             className="cart-btn full-width"
             onClick={onClickSignupHandler}
-            disabled={isPwdVisible !== isConfirmPwdVisible}
+            disabled={
+              signupInfo.password !== signupInfo.confirmPwd || !signupInfo.tAC
+            }
           >
             Create New Account
           </button>

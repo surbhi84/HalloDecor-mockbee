@@ -1,7 +1,7 @@
 import { products, wish } from "..";
 import { useUserData } from "hooks/context/userDataContext";
 import { useEffect, useState } from "react";
-import { getWishlist, deleteWishlist } from "api";
+import { getWishlist, deleteWishlist, postCart } from "api";
 
 export function Wishlist() {
   const [error, setError] = useState("");
@@ -27,12 +27,26 @@ export function Wishlist() {
 
   async function removeWishlistHandler(id) {
     try {
-      console.log("besan");
       await deleteWishlist(id, encodedToken);
       setError("");
       userDataDispatch({
         type: "REMOVEWISHLIST",
         payload: id,
+      });
+    } catch (err) {
+      setError(err.response.data.message);
+    }
+  }
+
+  async function wishlistToCartHandler(product) {
+    try {
+      await deleteWishlist(product.id, encodedToken);
+      await postCart(product, encodedToken);
+      setError("");
+      userDataDispatch({ type: "ADDTOCART", payload: product });
+      userDataDispatch({
+        type: "REMOVEWISHLIST",
+        payload: product.id,
       });
     } catch (err) {
       setError(err.response.data.message);
@@ -45,6 +59,7 @@ export function Wishlist() {
       <div className="parting flex-row">
         <h2 className="text-link">My Wishlist</h2>
       </div>
+
       <div className="flex-center gap-xl mg-m mg-btm flex-wrap">
         {wishlist.length === 0 ? (
           <h1> Your Wishlist is Empty</h1>
@@ -60,6 +75,7 @@ export function Wishlist() {
                   alt={wishItem.productAlt}
                   className="responsive-img"
                 />
+
                 <div
                   className={`${products["product-details"]} flex-col flex-center`}
                 >
@@ -70,7 +86,16 @@ export function Wishlist() {
                     <s>₹{wishItem.price}</s>
                   </div>
                 </div>
-                <button className="cart-btn gap-sm">Move to cart</button>
+
+                <button
+                  className="cart-btn gap-sm"
+                  onClick={() => {
+                    wishlistToCartHandler(wishItem);
+                  }}
+                >
+                  Move to cart
+                </button>
+
                 <button
                   className="cart-btn gap-sm"
                   onClick={() => {

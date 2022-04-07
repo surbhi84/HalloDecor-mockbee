@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// THE BASEURL IS FOR FUTURE PURPOSES,IN CASE THE API LINK CHANGES
 const BASEURL = "";
 
 // USER RELATED API'S
@@ -67,4 +68,64 @@ export function deleteWishlist(id, encodedToken) {
   return axios.delete(BASEURL + "/api/user/wishlist/" + id, {
     headers: { authorization: encodedToken },
   });
+}
+
+// CART API'S
+export function postCart(
+  {
+    id,
+    category,
+    productImg,
+    productAlt,
+    brand,
+    product,
+    discPrice,
+    price,
+    discount,
+    inStock,
+    rating,
+    quantity,
+  },
+  encodedToken
+) {
+  return axios.post(
+    BASEURL + "/api/user/cart",
+    {
+      product: {
+        id,
+        category,
+        productImg,
+        productAlt,
+        brand,
+        product,
+        discPrice,
+        price,
+        discount,
+        inStock,
+        rating,
+        quantity,
+      },
+    },
+    { headers: { authorization: encodedToken } }
+  );
+}
+
+export function getCart(encodedToken) {
+  return axios.get(BASEURL + "/api/user/cart", {
+    headers: { authorization: encodedToken },
+  });
+}
+
+export function deleteCart(id, encodedToken) {
+  return axios.delete(BASEURL + "/api/user/cart/" + id, {
+    headers: { authorization: encodedToken },
+  });
+}
+
+export function updateCart(id, encodedToken, type) {
+  return axios.post(
+    BASEURL + "/api/user/cart/" + id,
+    { action: { type: type } },
+    { headers: { authorization: encodedToken } }
+  );
 }
