@@ -17,7 +17,6 @@ export function Wishlist() {
   // useEffect(() => {
   //   (async () => {
   //     const userWishlist = await getWishlist(encodedToken);
-  //     console.log(userWishlist);
   //     userDataDispatch({
   //       type: "SETWISHLIST",
   //       payload: userWishlist.data.products,

@@ -28,7 +28,7 @@ export function ProductList() {
     if (sortBy === "PRICE_HIGH_TO_LOW") {
       return products.sort((a, b) => b.discPrice - a.discPrice);
     }
-    console.log(products, "sort");
+
     return products;
   }
 

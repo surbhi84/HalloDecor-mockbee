@@ -29,7 +29,7 @@ export const Navbar = ({ isHome }) => {
     if (location !== "products") navigate("/products");
     const resp = await getProducts();
     const products = resp.data.products;
-    console.log("ss");
+
     if (e.target.value.trim() !== "") {
       const filteredProducts = search(e.target.value.trim(), products, {
         keySelector: (obj) => [obj.brand, obj.product],
