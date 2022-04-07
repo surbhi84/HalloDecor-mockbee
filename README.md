@@ -112,7 +112,6 @@ Features:
 
 ## Getting Started
 
-As there are no complex frameworks or libraries used you dont have to bother much about getting started with the project.
 
 ### Prerequisites
 
